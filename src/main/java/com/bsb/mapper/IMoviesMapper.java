@@ -1,4 +1,4 @@
-package com.bsb.dao;
+package com.bsb.mapper;
 
 import com.bsb.pojo.Movie;
 import org.apache.ibatis.annotations.Delete;
@@ -18,7 +18,7 @@ public interface IMoviesMapper {
     List<Movie> getBoxOffice();
 
     @Select("SELECT * FROM movies_table WHERE id = #{id}")
-    Movie getMovieInfo(int id);
+    Movie getMovieInfo(String id);
 
     @Select("SELECT * FROM movies_table WHERE status = 1 limit 0, 2")
     List<Movie> getSelected();

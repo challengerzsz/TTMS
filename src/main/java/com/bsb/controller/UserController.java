@@ -28,8 +28,8 @@ public class UserController {
 
 
     @PostMapping("register")
-    public ServerResponse<String> register(String username, String password, int type) {
-        ServerResponse<String> response = userService.register(username, password, type);
+    public ServerResponse<String> register(User user) {
+        ServerResponse<String> response = userService.register(user);
         if (!response.isSuccess()) {
             return ServerResponse.createByErrorMsg("注册失败");
         }
