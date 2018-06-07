@@ -1,10 +1,9 @@
 package com.bsb.service.impls;
 
 import com.bsb.common.ServerResponse;
-import com.bsb.mapper.IUserMapper;
+import com.bsb.dao.IUserMapper;
 import com.bsb.pojo.User;
 import com.bsb.service.IUserService;
-import com.bsb.util.MD5Util;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,8 +30,8 @@ public class UserService implements IUserService {
             return ServerResponse.createByErrorMsg("用户不存在");
         }
 
-        String MD5EncodingPassword = MD5Util.MD5EncodeUtf8(password);
-        User user = userMapper.login(username, MD5EncodingPassword);
+//        String MD5EncodingPassword = MD5Util.MD5EncodeUtf8(password);
+        User user = userMapper.login(username, password);
         if (user == null) {
             return ServerResponse.createByErrorMsg("密码错误");
         }
@@ -43,17 +42,14 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public ServerResponse<String> register(User user) {
+    public ServerResponse<String> register(String username, String password, int type) {
 
-        int resultCode = userMapper.checkUsername(user.getUsername());
+        int resultCode = userMapper.checkUsername(username);
         if (resultCode != 0) {
             return ServerResponse.createByErrorMsg("用户已存在，注册失败");
         }
 
-        String password = user.getPassword();
-        user.setPassword(MD5Util.MD5EncodeUtf8(password));
-
-        int insertResult = userMapper.insertUser(user);
+        int insertResult = userMapper.insertUser(username, password, type);
 
         if (insertResult == 0) {
             return ServerResponse.createByErrorMsg("注册失败");

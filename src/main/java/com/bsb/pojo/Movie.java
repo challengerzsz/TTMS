@@ -26,17 +26,8 @@ public class Movie {
     private int imax;
     private String snum;
     private String time;
-    private Double price;
     private String id;
     private int status;
-
-    public Double getPrice() {
-        return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
-    }
 
     public int getCountid() {
         return countid;

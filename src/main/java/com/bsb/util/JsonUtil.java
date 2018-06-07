@@ -1,6 +1,6 @@
 package com.bsb.util;
 
-import com.bsb.mapper.IMoviesMapper;
+import com.bsb.dao.IMoviesMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
