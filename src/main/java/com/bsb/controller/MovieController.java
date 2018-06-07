@@ -21,7 +21,7 @@ public class MovieController {
     @Autowired
     private IMoviesService moviesService;
 
-    @GetMapping("/initMovies")
+    @PostMapping("/initMovies")
     public ServerResponse<String> initMovies() {
         return moviesService.initMovies();
     }
@@ -32,7 +32,7 @@ public class MovieController {
     }
 
     @GetMapping("/{id}")
-    public ServerResponse<Movie> getMovieInfo(@PathVariable("id") int id) {
+    public ServerResponse<Movie> getMovieInfo(@PathVariable("id") String id) {
         return moviesService.getMovieInfo(id);
     }
 
@@ -64,6 +64,7 @@ public class MovieController {
 
         return moviesService.deleteSelectedMovie(movieId);
     }
+
 
     @PostMapping("/update")
     public ServerResponse<Movie> updateSelectedMovie(Movie updateMovie) {

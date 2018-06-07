@@ -3,7 +3,7 @@ package com.bsb.service.impls;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.bsb.common.ServerResponse;
-import com.bsb.dao.IMoviesMapper;
+import com.bsb.mapper.IMoviesMapper;
 import com.bsb.pojo.Movie;
 import com.bsb.service.IMoviesService;
 import com.bsb.util.HttpClientUtil;
@@ -57,7 +57,7 @@ public class MoviesService implements IMoviesService {
     }
 
     @Override
-    public ServerResponse<Movie> getMovieInfo(int id) {
+    public ServerResponse<Movie> getMovieInfo(String id) {
         Movie movie = moviesMapper.getMovieInfo(id);
 
         if (movie == null) {

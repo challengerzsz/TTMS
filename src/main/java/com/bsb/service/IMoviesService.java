@@ -13,7 +13,7 @@ public interface IMoviesService {
 
     ServerResponse<List<Movie>> getBoxOffice();
 
-    ServerResponse<Movie> getMovieInfo(int id);
+    ServerResponse<Movie> getMovieInfo(String id);
 
     ServerResponse<List<Movie>> getUnSelectedMovies();
 
