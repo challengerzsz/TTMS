@@ -10,6 +10,8 @@ import com.bsb.util.HttpClientUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -74,5 +76,54 @@ public class MoviesService implements IMoviesService {
         }
 
         return ServerResponse.createBySuccess("获取未添加影片成功" , movies);
+    }
+
+    @Override
+    public ServerResponse<List<Movie>> getSelected() {
+        List<Movie> movies = moviesMapper.getSelected();
+
+        if (movies.size() == 0) {
+            return ServerResponse.createByErrorMsg("未添加影片");
+        }
+
+        return ServerResponse.createBySuccess("获取影片成功" , movies);
+    }
+
+    @Override
+    public ServerResponse<String> selectMovies(HashMap<String,ArrayList<Integer>> moviesIdJson) {
+
+        ArrayList<Integer> moviesId = moviesIdJson.get("moviesId");
+
+        int resultCount = 0;
+        for (Integer movieId : moviesId) {
+            resultCount = moviesMapper.selectMovie(movieId);
+            if (resultCount == 0) {
+                return ServerResponse.createByErrorMsg("添加影片失败");
+            }
+        }
+
+        return ServerResponse.createBySuccessMsg("添加影片成功");
+    }
+
+    @Override
+    public ServerResponse<String> deleteSelectedMovie(Integer movieId) {
+        int resultCount = moviesMapper.deleteSelectedMovie(movieId);
+        if (resultCount == 0) {
+            return ServerResponse.createByErrorMsg("删除影片失败");
+        }
+
+        return ServerResponse.createBySuccessMsg("删除影片成功");
+    }
+
+    @Override
+    public ServerResponse<Movie> updateSelectedMovie(Movie updateMovie) {
+
+        int resultCount  = moviesMapper.updateSelectedMovie(updateMovie);
+
+        if (resultCount == 0) {
+            return ServerResponse.createByErrorMsg("更新影片信息失败");
+        }
+
+        return ServerResponse.createBySuccess("更新影片信息成功", updateMovie);
     }
 }

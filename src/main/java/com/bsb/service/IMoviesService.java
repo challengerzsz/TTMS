@@ -3,6 +3,8 @@ package com.bsb.service;
 import com.bsb.common.ServerResponse;
 import com.bsb.pojo.Movie;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public interface IMoviesService {
@@ -15,6 +17,12 @@ public interface IMoviesService {
 
     ServerResponse<List<Movie>> getUnSelectedMovies();
 
+    ServerResponse<List<Movie>> getSelected();
 
+    ServerResponse<String> selectMovies(HashMap<String,ArrayList<Integer>> moviesIdJson);
+
+    ServerResponse<String> deleteSelectedMovie(Integer movieId);
+
+    ServerResponse<Movie> updateSelectedMovie(Movie updateMovie);
 }
 
