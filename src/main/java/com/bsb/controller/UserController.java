@@ -40,7 +40,7 @@ public class UserController {
     @PostMapping("logout")
     public ServerResponse<String> logout(HttpSession session) {
         session.removeAttribute(Const.CURRENT_USER);
-        return ServerResponse.createBySuccess();
+        return ServerResponse.createBySuccessMsg("注销成功");
     }
 
     @GetMapping("{id}")

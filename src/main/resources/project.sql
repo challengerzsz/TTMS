@@ -74,7 +74,7 @@ create table ticket_table(
   seatRow int not null,
   seatColumn int not null,
   ticketPrice double not null,
-  status int(1) default 0,
+  type int(1) default 0,
   createTime timestamp default now(),
   sellerId int not null default 0,
   foreign key (movieId) references movies_table (id),
@@ -104,7 +104,7 @@ delimiter ;
 delimiter $$
 create trigger update_analysis_trigger after insert
 on ticket_table for each row begin
-if new.sellerId != 0
+if new.type = 1
 then
 update analysis_table set sold = sold + new.ticketPrice;
 end if;
@@ -151,3 +151,8 @@ end;
 $$
 delimiter ;
 
+
+
+create view analysis_view as
+SELECT user.id, user.username, user.realName, user.email, user.phone,
+user.address, an.sold FROM user_table user, analysis_table an WHERE user.id = an.userId;

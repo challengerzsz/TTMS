@@ -19,4 +19,19 @@
          )
         </foreach>
     </insert>
+
+    <insert id="sellTicket" parameterType="com.bsb.pojo.Ticket">
+        INSERT INTO ticket_table
+        (
+        movieId, hallId, startTime, seatRow, seatColumn, ticketPrice, type, sellerId
+        )
+        VALUES
+        <foreach collection="list" item="ticket" index="index" separator=",">
+            (
+            #{ticket.movieId}, #{ticket.hallId}, #{ticket.startTime}, #{ticket.seatRow},
+            #{ticket.seatColumn}, #{ticket.ticketPrice}, #{ticket.type}, #{ticket.sellerId}
+            )
+        </foreach>
+    </insert>
+
 </mapper>

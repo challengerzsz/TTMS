@@ -10,10 +10,10 @@ public class Ticket {
     private int seatRow;
     private int seatColumn;
     private double ticketPrice;
-    private int status;
+    private int type;
     @JsonIgnore
     private String createTime;
-    private String sellerId;
+    private int sellerId;
 
     public int getId() {
         return id;
@@ -71,12 +71,12 @@ public class Ticket {
         this.ticketPrice = ticketPrice;
     }
 
-    public int getStatus() {
-        return status;
+    public int getType() {
+        return type;
     }
 
-    public void setStatus(int status) {
-        this.status = status;
+    public void setType(int type) {
+        this.type = type;
     }
 
     public String getCreateTime() {
@@ -87,11 +87,11 @@ public class Ticket {
         this.createTime = createTime;
     }
 
-    public String getSellerId() {
+    public int getSellerId() {
         return sellerId;
     }
 
-    public void setSellerId(String sellerId) {
+    public void setSellerId(int sellerId) {
         this.sellerId = sellerId;
     }
 }

@@ -20,7 +20,7 @@ public interface IMoviesMapper {
     @Select("SELECT * FROM movies_table WHERE id = #{id}")
     Movie getMovieInfo(String id);
 
-    @Select("SELECT * FROM movies_table WHERE status = 1 limit 0, 2")
+    @Select("SELECT * FROM movies_table WHERE status = 1 limit 0, 10")
     List<Movie> getSelected();
 
     @Update("UPDATE movies_table SET status = 1 WHERE id = #{movieId}")

@@ -6,6 +6,7 @@ import com.bsb.mapper.ITicketMapper;
 import com.bsb.pojo.Schedule;
 import com.bsb.pojo.Seat;
 import com.bsb.pojo.Ticket;
+import com.bsb.pojo.User;
 import com.bsb.service.ITicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -59,6 +60,8 @@ public class TicketService implements ITicketService {
             ticket.setSeatRow(seat.getRow());
             ticket.setSeatColumn(seat.getColumn());
             ticket.setTicketPrice(schedule.getPrice());
+//            用户买票设置type为0
+            ticket.setType(0);
             buyTickets.add(ticket);
         }
 
@@ -69,4 +72,40 @@ public class TicketService implements ITicketService {
 
         return ServerResponse.createBySuccessMsg("购票成功!");
     }
+
+    @Override
+    public ServerResponse<String> sellTickets(User user, ArrayList<Seat> seats) {
+
+        Schedule schedule = scheduleMapper.getScheduleById(seats.get(0).getScheduleId());
+        if (schedule == null) {
+            return ServerResponse.createByErrorMsg("无此演出计划");
+        }
+
+        List<Ticket> sellTickets = new ArrayList<>();
+
+        for (Seat seat : seats) {
+            if (seat == null) {
+                return ServerResponse.createByErrorMsg("购票失败");
+            }
+
+            Ticket ticket = new Ticket();
+            ticket.setMovieId(schedule.getMovieId());
+            ticket.setHallId(schedule.getHallId());
+            ticket.setStartTime(schedule.getStartTime());
+            ticket.setSeatRow(seat.getRow());
+            ticket.setSeatColumn(seat.getColumn());
+            ticket.setTicketPrice(schedule.getPrice());
+            ticket.setType(1);
+            ticket.setSellerId(user.getId());
+            sellTickets.add(ticket);
+        }
+
+        int resultCount = ticketMapper.sellTicket(sellTickets);
+        if (resultCount == 0) {
+            return ServerResponse.createByErrorMsg("售票失败");
+        }
+
+        return ServerResponse.createBySuccessMsg("售票成功!");
+    }
+
 }
