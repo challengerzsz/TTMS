@@ -109,7 +109,7 @@ public class MoviesService implements IMoviesService {
     public ServerResponse<String> deleteSelectedMovie(Integer movieId) {
         int resultCount = moviesMapper.deleteSelectedMovie(movieId);
         if (resultCount == 0) {
-            return ServerResponse.createByErrorMsg("删除影片失败");
+            return ServerResponse.createByErrorMsg("电影院没有上映该电影");
         }
 
         return ServerResponse.createBySuccessMsg("删除影片成功");

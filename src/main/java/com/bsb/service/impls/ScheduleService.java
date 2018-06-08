@@ -10,6 +10,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -25,9 +26,12 @@ public class ScheduleService implements IScheduleService {
     @Autowired
     private IMoviesService moviesService;
 
+    private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+
 
     @Override
     public ServerResponse<String> addSchedules(HashMap<String, ArrayList<Schedule>> newSchedules) {
+
         ArrayList<Schedule> schedules = newSchedules.get("newSchedules");
 
         if (schedules.size() == 0) {
@@ -51,13 +55,18 @@ public class ScheduleService implements IScheduleService {
             return ServerResponse.createByErrorMsg("未找到该影片，添加演出计划失败");
         }
 
+
         Date startDate = new Date(startTime);
-        long endTimeMil = startDate.getTime() + movie.getDur();
-        String endTime = new Date(endTimeMil).toString();
+        long endTimeMil = startDate.getTime() + (movie.getDur() * 60 * 1000) ;
+        String endTime = simpleDateFormat.format(new Date(endTimeMil));
 
-        logger.info(endTime);
 
-        int validCount = scheduleMapper.checkValid(startTime, endTime);
+
+        logger.info("startDate" + startTime);
+        logger.info("endDate" + endTime);
+        logger.info(movie.getDur());
+
+        int validCount = scheduleMapper.checkValid(hallId, startTime, endTime);
         if (validCount > 0) {
             return ServerResponse.createByErrorMsg("演出计划时间与已存在的演出计划重复");
         }
@@ -65,21 +74,32 @@ public class ScheduleService implements IScheduleService {
         return ServerResponse.createBySuccessMsg("演出计划时间√");
     }
 
-    @Override
-    public ServerResponse<List<Schedule>> getSchedules(String id) {
 
-        ServerResponse<Movie> movieServerResponse = moviesService.getMovieInfo(id);
+    @Override
+    public ServerResponse<List<Schedule>> getScheduleByMovieId(String movieId) {
+
+        ServerResponse<Movie> movieServerResponse = moviesService.getMovieInfo(movieId);
         if (!movieServerResponse.isSuccess()) {
             return ServerResponse.createByErrorMsg("影片不存在");
         }
 
-        List<Schedule> schedules = scheduleMapper.getSchedule(id);
+        List<Schedule> schedules = scheduleMapper.getScheduleByMovieId(movieId);
 
         if (schedules.size() == 0) {
             return ServerResponse.createByErrorMsg("获取该影片演出信息为空");
         }
 
         return ServerResponse.createBySuccess("演出计划查询成功", schedules);
+    }
+
+    @Override
+    public ServerResponse<Schedule> getScheduleById(int scheduleId) {
+        Schedule schedule = scheduleMapper.getScheduleById(scheduleId);
+        if (schedule == null) {
+            return ServerResponse.createByErrorMsg("无此演出计划");
+        }
+
+        return ServerResponse.createBySuccess("查询成功", schedule);
     }
 
 }

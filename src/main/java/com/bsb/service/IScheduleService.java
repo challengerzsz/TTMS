@@ -13,5 +13,8 @@ public interface IScheduleService {
 
     ServerResponse<String> checkValid(String movieId, int hallId, String startTime);
 
-    ServerResponse<List<Schedule>> getSchedules(String id);
+    ServerResponse<List<Schedule>> getScheduleByMovieId(String movieId);
+
+    ServerResponse<Schedule> getScheduleById(int scheduleId);
+
 }

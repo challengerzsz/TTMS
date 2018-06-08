@@ -38,7 +38,8 @@ create table movies_table(
   snum varchar(50),
   time varchar(50),
   price double default 0,
-  id varchar(10) primary key)
+  id varchar(10) primary key,
+  status int(1) default 0)
   engine = InnoDB charset = utf8;
 
 
@@ -54,8 +55,9 @@ create table hall_table(
 
 create table schedule_table (
   id int unique key auto_increment,
-  movieId varchar(10) primary key not null,
+  movieId varchar(10) not null,
   hallId int not null,
+  price double default 0,
   startTime timestamp not null,
   endTime timestamp not null,
   foreign key (movieId) references movies_table (id),
@@ -74,10 +76,10 @@ create table ticket_table(
   ticketPrice double not null,
   status int(1) default 0,
   createTime timestamp default now(),
-  sellerId int not null,
-  foreign key (sellerId) references user_table (id),
+  sellerId int not null default 0,
   foreign key (movieId) references movies_table (id),
-  foreign key (hallId) references hall_table (id)
+  foreign key (hallId) references hall_table (id),
+  index (movieId)
 )engine = InnoDB charset = utf8;
 
 
@@ -91,7 +93,9 @@ create table analysis_table (
 delimiter $$
 create trigger init_analysis_trigger after insert
 on user_table for each row begin
+if new.type = 1
 insert into analysis_table values (null, new.id, 0);
+end if;
 end;
 $$
 delimiter ;
@@ -100,7 +104,10 @@ delimiter ;
 delimiter $$
 create trigger update_analysis_trigger after insert
 on ticket_table for each row begin
+if new.sellerId != 0
+then
 update analysis_table set sold = sold + new.ticketPrice;
+end if;
 end;
 $$
 delimiter ;
@@ -125,12 +132,22 @@ end;
 $$
 delimiter ;
 
+
 -- 打开事件线程
 SET GLOBAL event_scheduler=1;
 -- 关闭safe-updates
 SET SQL_SAFE_UPDATES = 0;
 
-drop event if exists delete_schedule_event;
-create event delete_schedule_event
+
+
+drop event if exists delete_afternow_event;
+delimiter $$
+create event delete_afternow_event
 on schedule every 10 MINUTE do
+begin
+delete from ticket_table where startTime < current_timestamp;
 delete from schedule_table where startTime < current_timestamp;
+end;
+$$
+delimiter ;
+
