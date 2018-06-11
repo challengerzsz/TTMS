@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface IAnalysisService {
 
-    ServerResponse<AnalysisData> getAnalysisBySellerId(Integer sellerId);
+    ServerResponse<AnalysisData> getAnalysisBySellerId(String sellerName);
 
     ServerResponse<List<AnalysisData>> getAnalysisRank();
 

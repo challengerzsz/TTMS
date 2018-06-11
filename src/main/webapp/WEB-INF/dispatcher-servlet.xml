@@ -21,6 +21,7 @@
     <!--<property name="prefix" value="/WEB-INF/view/" />-->
     <!--<property name="suffix" value=".jsp" />-->
 
+    <mvc:default-servlet-handler/>
     <mvc:annotation-driven>
         <mvc:message-converters>
             <bean class="org.springframework.http.converter.StringHttpMessageConverter">

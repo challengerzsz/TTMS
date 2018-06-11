@@ -23,9 +23,6 @@ public class UserService implements IUserService {
     @Override
     public ServerResponse<User> login(String username, String password) {
 
-        logger.info(username);
-        logger.info(password);
-
         int resultCount = userMapper.checkUsername(username);
         if (resultCount == 0) {
             return ServerResponse.createByErrorMsg("用户不存在");
@@ -63,6 +60,16 @@ public class UserService implements IUserService {
 
     }
 
+    @Override
+    public ServerResponse<User> queryUserInfo(String userName) {
+
+        User user = userMapper.queryUserInfo(userName);
+        if (user == null) {
+            return ServerResponse.createByErrorMsg("不存在该用户");
+        }
+
+        return ServerResponse.createBySuccess("查询成功", user);
+    }
 
 
 }

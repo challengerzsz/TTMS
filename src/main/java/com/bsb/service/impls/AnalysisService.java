@@ -16,8 +16,8 @@ public class AnalysisService implements IAnalysisService {
     private IAnalysisMapper analysisMapper;
 
     @Override
-    public ServerResponse<AnalysisData> getAnalysisBySellerId(Integer sellerId) {
-        AnalysisData analysisData = analysisMapper.getAnalysisBySellerId(sellerId);
+    public ServerResponse<AnalysisData> getAnalysisBySellerId(String sellerName) {
+        AnalysisData analysisData = analysisMapper.getAnalysisBySellerId(sellerName);
         if (analysisData == null) {
             return ServerResponse.createByErrorMsg("查询失败");
         }

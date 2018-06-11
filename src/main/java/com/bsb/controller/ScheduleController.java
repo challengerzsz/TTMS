@@ -4,6 +4,7 @@ import com.bsb.common.ServerResponse;
 import com.bsb.pojo.Schedule;
 import com.bsb.pojo.Ticket;
 import com.bsb.service.IScheduleService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,10 +12,13 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/schedule")
 public class ScheduleController {
+
+    private Logger logger = Logger.getLogger(ScheduleController.class);
 
     @Autowired
     private IScheduleService scheduleService;
@@ -30,8 +34,10 @@ public class ScheduleController {
     }
 
     @PostMapping("/checkValid")
-    public ServerResponse<String> checkValid(String movieId, int hallId, String startTime) {
-        return scheduleService.checkValid(movieId, hallId, startTime);
+    public ServerResponse<String> checkValid(@RequestBody Map<String,String> uncheckedJson) {
+
+        return scheduleService.checkValid(uncheckedJson.get("movieId"), Integer.parseInt(uncheckedJson.get("hallId")),
+                uncheckedJson.get("startTime"));
     }
 
     @GetMapping("/getSchedules/{movieId}")

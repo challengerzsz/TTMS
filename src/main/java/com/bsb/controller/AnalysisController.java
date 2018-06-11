@@ -21,14 +21,14 @@ public class AnalysisController {
     @Autowired
     private IAnalysisService analysisService;
 
-    @GetMapping("/{sellerId}")
-    public ServerResponse<AnalysisData> getAnalysisBySellerId(HttpSession session, @PathVariable("sellerId") Integer sellerId) {
+    @GetMapping("/{sellerName}")
+    public ServerResponse<AnalysisData> getAnalysisBySellerId(HttpSession session, @PathVariable("sellerName") String sellerName) {
         User user = (User) session.getAttribute(Const.CURRENT_USER);
         if (user == null || user.getType() != 2) {
             return ServerResponse.createByErrorMsg("身份信息认证失败，请重新登陆");
         }
 
-        return analysisService.getAnalysisBySellerId(sellerId);
+        return analysisService.getAnalysisBySellerId(sellerName);
     }
 
 

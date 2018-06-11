@@ -9,6 +9,7 @@ public class User {
     private String username;
     private String password;
     private int type;
+    private String img;
     private String realName;
     private String email;
     private String phone;
@@ -17,6 +18,14 @@ public class User {
     private String create_time;
     @JsonIgnore
     private String update_time;
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
 
     public String getRealName() {
         return realName;

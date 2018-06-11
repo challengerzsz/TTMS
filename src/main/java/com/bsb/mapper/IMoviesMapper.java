@@ -14,7 +14,7 @@ public interface IMoviesMapper {
     @Select("SELECT * FROM movies_table WHERE status = 0 limit 0, 8")
     List<Movie> getUnSelectedMovies();
 
-    @Select("SELECT * FROM movies_table order by sc desc limit 0, 10")
+    @Select("SELECT * FROM movies_table WHERE status = 1 ORDER BY sc DESC limit 0, 10")
     List<Movie> getBoxOffice();
 
     @Select("SELECT * FROM movies_table WHERE id = #{id}")

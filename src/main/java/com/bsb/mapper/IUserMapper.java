@@ -14,4 +14,7 @@ public interface IUserMapper {
                @Param("password") String md5EncodingPassword);
 
     int insertUser(User user);
+
+    @Select("SELECT * FROM user_table WHERE username LIKE CONCAT('%', #{username}, '%')")
+    User queryUserInfo(String userName);
 }

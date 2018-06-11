@@ -7,7 +7,8 @@
     <resultMap id="BaseResultMap" type="com.bsb.pojo.User"/>
 
     <insert id="insertUser" parameterType="com.bsb.pojo.User">
-        INSERT INTO user_table VALUES (null, #{username}, #{password}, #{type},
+        INSERT INTO user_table (id, username, password, type, realName, email, phone, address, create_time, update_time)VALUES
+        (null, #{username}, #{password}, #{type},
         #{realName}, #{email}, #{phone}, #{address}, now(), now())
 
     </insert>

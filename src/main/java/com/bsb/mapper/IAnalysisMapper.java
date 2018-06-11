@@ -8,7 +8,7 @@ import java.util.List;
 public interface IAnalysisMapper {
 
     @Select("SELECT * FROM analysis_view WHERE id = #{sellerId}")
-    AnalysisData getAnalysisBySellerId(Integer sellerId);
+    AnalysisData getAnalysisBySellerId(String sellerName);
 
     @Select("SELECT * FROM analysis_view ORDER BY sold DESC LIMIT 0, 10")
     List<AnalysisData> getAnalysisRank();
