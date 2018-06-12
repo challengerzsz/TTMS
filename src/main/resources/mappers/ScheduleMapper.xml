@@ -9,13 +9,23 @@
     <insert id="insertSchedule" parameterType="java.util.List">
         INSERT INTO schedule_table
         (
-        movieId, hallId, startTime, endTime
+        movieId, hallId, price, startTime, endTime
         )
         VALUES
         <foreach collection="list" item="schedule" index="index" separator=",">
             (
-            #{schedule.movieId}, #{schedule.hallId}, #{schedule.startTime}, #{schedule.endTime}
+            #{schedule.movieId}, #{schedule.hallId}, #{schedule.price}, #{schedule.startTime}, #{schedule.endTime}
             )
         </foreach>
     </insert>
+
+    <delete id="deleteScheduleById" parameterType="java.util.List">
+
+        DELETE FROM schedule_table WHERE id IN
+
+        <foreach item="id" collection="list" index="index" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+
+    </delete>
 </mapper>

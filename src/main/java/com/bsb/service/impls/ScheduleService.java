@@ -11,10 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class ScheduleService implements IScheduleService {
@@ -100,6 +97,22 @@ public class ScheduleService implements IScheduleService {
         }
 
         return ServerResponse.createBySuccess("查询成功", schedule);
+    }
+
+    @Override
+    public ServerResponse<String> deleteScheduleById(Map<String, List<Integer>> deleteScheduleJson) {
+
+        List<Integer> deleteScheduleIds = deleteScheduleJson.get("deleteScheduleIds");
+        if (deleteScheduleIds == null) {
+            return ServerResponse.createByErrorMsg("待删除的演出计划Id列表为空，删除失败");
+        }
+
+        int resultCount = scheduleMapper.deleteScheduleById(deleteScheduleIds);
+        if (resultCount == 0) {
+            return ServerResponse.createByErrorMsg("删除演出计划失败");
+        }
+
+        return ServerResponse.createBySuccessMsg("删除演出计划成功");
     }
 
 }

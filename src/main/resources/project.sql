@@ -114,6 +114,14 @@ end;
 $$
 delimiter ;
 
+delimiter $$
+create trigger delete_analysis_before_delete_user_trigger before delete
+on user_table for each row begin
+delete from analysis_table where userId = old.id;
+end;
+$$
+delimiter ;
+
 
 delimiter $$
 create trigger delete_movie_trigger after delete

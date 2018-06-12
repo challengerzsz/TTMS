@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class MoviesService implements IMoviesService {
@@ -106,8 +107,14 @@ public class MoviesService implements IMoviesService {
     }
 
     @Override
-    public ServerResponse<String> deleteSelectedMovie(Integer movieId) {
-        int resultCount = moviesMapper.deleteSelectedMovie(movieId);
+    public ServerResponse<String> deleteSelectedMovie(Map<String, String> deleteMovieJson) {
+
+        String deleteMovie = deleteMovieJson.get("id");
+        if (deleteMovie == null) {
+            return ServerResponse.createByErrorMsg("待删除的电影id为空，删除失败");
+        }
+
+        int resultCount = moviesMapper.deleteSelectedMovie(deleteMovie);
         if (resultCount == 0) {
             return ServerResponse.createByErrorMsg("电影院没有上映该电影");
         }

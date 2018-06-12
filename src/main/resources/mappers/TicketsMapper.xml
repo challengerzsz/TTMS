@@ -34,4 +34,14 @@
         </foreach>
     </insert>
 
+    <delete id="returnTickets" parameterType="java.util.List">
+
+        DELETE FROM ticket_table WHERE userId = #{userId} AND id IN
+
+        <foreach item="id" collection="ticketsIds" index="index" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+
+    </delete>
+
 </mapper>

@@ -11,6 +11,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Map;
+
 
 @Service
 public class UserService implements IUserService {
@@ -69,6 +72,22 @@ public class UserService implements IUserService {
         }
 
         return ServerResponse.createBySuccess("查询成功", user);
+    }
+
+    @Override
+    public ServerResponse<String> deleteByUserId(Map<String, List<Integer>> userIdsJson) {
+
+        List<Integer> userIds = userIdsJson.get("deleteUserIds");
+        if (userIds == null) {
+            return ServerResponse.createByErrorMsg("待删除的用户id列表为空，删除失败");
+        }
+
+        int resultCount = userMapper.deleteByUserId(userIds);
+        if (resultCount == 0) {
+            return ServerResponse.createByErrorMsg("删除用户失败");
+        }
+
+        return ServerResponse.createBySuccessMsg("删除用户成功");
     }
 
 

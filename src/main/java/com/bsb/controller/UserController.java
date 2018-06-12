@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 import java.util.Map;
 
 
@@ -60,12 +61,23 @@ public class UserController {
     @GetMapping("/queryUser/{userName}")
     public ServerResponse<User> queryUserInfo(@PathVariable("userName") String userName, HttpSession session) {
 
-        logger.info(userName);
         User user = (User) session.getAttribute(Const.CURRENT_USER);
         if (user == null || user.getType() != 2) {
             return ServerResponse.createByErrorMsg("身份认证失败，请重新登录");
         }
 
         return userService.queryUserInfo(userName);
+    }
+
+    @PostMapping("/delete")
+    public ServerResponse<String> deleteUserById(HttpSession session, @RequestBody Map<String,List<Integer>> userIdsJson) {
+
+        User user = (User) session.getAttribute(Const.CURRENT_USER);
+        if (user == null || user.getType() != 2) {
+            return ServerResponse.createByErrorMsg("身份信息认证失败，请重新登录");
+        }
+
+        return userService.deleteByUserId(userIdsJson);
+
     }
 }

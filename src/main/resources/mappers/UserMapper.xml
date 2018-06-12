@@ -12,4 +12,14 @@
         #{realName}, #{email}, #{phone}, #{address}, now(), now())
 
     </insert>
+
+    <delete id="deleteByUserId" parameterType="java.util.List">
+
+        DELETE FROM user_table WHERE id IN
+
+        <foreach item="id" collection="list" index="index" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+
+    </delete>
 </mapper>

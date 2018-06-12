@@ -6,6 +6,7 @@ import com.bsb.pojo.Schedule;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public interface IScheduleService {
 
@@ -17,4 +18,5 @@ public interface IScheduleService {
 
     ServerResponse<Schedule> getScheduleById(int scheduleId);
 
+    ServerResponse<String> deleteScheduleById(Map<String, List<Integer>> deleteScheduleJson);
 }

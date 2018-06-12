@@ -6,6 +6,7 @@ import com.bsb.pojo.Movie;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public interface IMoviesService {
 
@@ -21,7 +22,7 @@ public interface IMoviesService {
 
     ServerResponse<String> selectMovies(HashMap<String,ArrayList<Integer>> moviesIdJson);
 
-    ServerResponse<String> deleteSelectedMovie(Integer movieId);
+    ServerResponse<String> deleteSelectedMovie(Map<String, String> deleteMovieJson);
 
     ServerResponse<Movie> updateSelectedMovie(Movie updateMovie);
 }

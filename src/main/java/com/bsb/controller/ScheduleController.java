@@ -1,14 +1,15 @@
 package com.bsb.controller;
 
+import com.bsb.common.Const;
 import com.bsb.common.ServerResponse;
 import com.bsb.pojo.Schedule;
-import com.bsb.pojo.Ticket;
+import com.bsb.pojo.User;
 import com.bsb.service.IScheduleService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.SimpleDateFormat;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -48,5 +49,15 @@ public class ScheduleController {
     @GetMapping("/getSchedule/{scheduleId}")
     public ServerResponse<Schedule> getScheduleById(@PathVariable("scheduleId") int scheduleId) {
         return scheduleService.getScheduleById(scheduleId);
+    }
+
+    @PostMapping("/delete")
+    public ServerResponse<String> deleteScheduleById(HttpSession session, @RequestBody Map<String,List<Integer>> deleteScheduleJson) {
+        User user = (User) session.getAttribute(Const.CURRENT_USER);
+        if (user == null || user.getType() != 2) {
+            return ServerResponse.createByErrorMsg("用户信息认证失败");
+        }
+
+        return scheduleService.deleteScheduleById(deleteScheduleJson);
     }
 }

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 @RestController
@@ -53,13 +54,14 @@ public class MovieController {
         return moviesService.selectMovies(moviesIdJson);
     }
 
-    @PostMapping("/{id}")
-    public ServerResponse<String> deleteSelectedMovie(@PathVariable("id") Integer movieId) {
-        if (movieId == null) {
+    @PostMapping("/delete")
+    public ServerResponse<String> deleteSelectedMovie(@RequestBody Map<String,String> deleteMovieJson) {
+
+        if (deleteMovieJson == null) {
             return ServerResponse.createByErrorMsg("传入参数为空");
         }
 
-        return moviesService.deleteSelectedMovie(movieId);
+        return moviesService.deleteSelectedMovie(deleteMovieJson);
     }
 
 

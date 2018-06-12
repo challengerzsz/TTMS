@@ -4,6 +4,8 @@ import com.bsb.pojo.User;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
+import java.util.List;
+
 public interface IUserMapper {
 
     @Select("SELECT COUNT(1) FROM user_table WHERE username = #{username}")
@@ -17,4 +19,6 @@ public interface IUserMapper {
 
     @Select("SELECT * FROM user_table WHERE username LIKE CONCAT('%', #{username}, '%')")
     User queryUserInfo(String userName);
+
+    int deleteByUserId(List<Integer> userIds);
 }

@@ -6,6 +6,7 @@ import com.bsb.pojo.Seat;
 import com.bsb.pojo.Ticket;
 import com.bsb.pojo.User;
 import com.bsb.service.ITicketService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +19,8 @@ import java.util.Map;
 @RestController
 @RequestMapping(value = "/ticket")
 public class TicketController {
+
+    Logger logger = Logger.getLogger(TicketController.class);
 
     @Autowired
     private ITicketService ticketService;
@@ -74,6 +77,18 @@ public class TicketController {
         }
 
         return ticketService.getMyTickets(userId);
+    }
+
+    @PostMapping("/return")
+    public ServerResponse<String> returnTickets(HttpSession session, @RequestBody Map<String,List<Integer>> returnTicketsJson) {
+
+//        logger.info(returnTicketsJson.size());
+        User user = (User) session.getAttribute(Const.CURRENT_USER);
+        if (user == null || user.getType() != 0) {
+            return ServerResponse.createByErrorMsg("身份信息验证失败，请重新登录");
+        }
+
+        return ticketService.returnTickets(user, returnTicketsJson);
     }
 
 }

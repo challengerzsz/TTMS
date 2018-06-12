@@ -1,9 +1,11 @@
 package com.bsb.mapper;
 
+import com.bsb.common.ServerResponse;
 import com.bsb.pojo.Ticket;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public interface ITicketMapper {
@@ -18,4 +20,7 @@ public interface ITicketMapper {
 
     @Select("SELECT * FROM ticket_table WHERE userId = #{userId}")
     List<Ticket> getMyTickets(int userId);
+
+    int returnTickets(@Param("userId") int userId,
+                      @Param("ticketsIds") List<Integer> ticketsIds);
 }

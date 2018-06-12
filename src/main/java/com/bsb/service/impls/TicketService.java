@@ -8,11 +8,13 @@ import com.bsb.pojo.Seat;
 import com.bsb.pojo.Ticket;
 import com.bsb.pojo.User;
 import com.bsb.service.ITicketService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class TicketService implements ITicketService {
@@ -21,6 +23,8 @@ public class TicketService implements ITicketService {
     private ITicketMapper ticketMapper;
     @Autowired
     private IScheduleMapper scheduleMapper;
+
+    private Logger logger = Logger.getLogger(TicketService.class);
 
     @Override
     public ServerResponse<List<Ticket>> getTicketsByScheduleId(int scheduleId) {
@@ -117,6 +121,22 @@ public class TicketService implements ITicketService {
         }
 
         return ServerResponse.createBySuccess("查询成功", tickets);
+    }
+
+    @Override
+    public ServerResponse<String> returnTickets(User user, Map<String,List<Integer>> returnTicketsJson) {
+
+        ArrayList<Integer> ticketsIds = (ArrayList<Integer>) returnTicketsJson.get("returnTicketsId");
+        if (ticketsIds == null) {
+            return ServerResponse.createByErrorMsg("票务信息为空，退票失败");
+        }
+
+        int resultCount = ticketMapper.returnTickets(user.getId(), ticketsIds);
+        if (resultCount == 0) {
+            return ServerResponse.createByErrorMsg("删除已订票失败");
+        }
+
+        return ServerResponse.createBySuccessMsg("退票成功");
     }
 
 }
