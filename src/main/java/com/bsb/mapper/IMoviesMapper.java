@@ -11,7 +11,7 @@ public interface IMoviesMapper {
 
     int insertMovies(List<Movie> movies);
 
-    @Select("SELECT * FROM movies_table WHERE status = 0 limit 0, 8")
+    @Select("SELECT * FROM movies_table WHERE status = 0 LIMIT 0, 8")
     List<Movie> getUnSelectedMovies();
 
     @Select("SELECT * FROM movies_table WHERE status = 1 ORDER BY sc DESC limit 0, 10")

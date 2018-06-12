@@ -15,4 +15,7 @@ public interface ITicketMapper {
     int buyTicket(List<Ticket> buyTickets);
 
     int sellTicket(List<Ticket> sellTickets);
+
+    @Select("SELECT * FROM ticket_table WHERE userId = #{userId}")
+    List<Ticket> getMyTickets(int userId);
 }

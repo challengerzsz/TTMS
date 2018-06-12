@@ -12,8 +12,19 @@ public class Ticket {
     private double ticketPrice;
     private int type;
     @JsonIgnore
+    private int userId;
+    @JsonIgnore
     private String createTime;
+    @JsonIgnore
     private int sellerId;
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
 
     public int getId() {
         return id;

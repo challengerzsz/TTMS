@@ -2,7 +2,6 @@ package com.bsb.controller;
 
 import com.bsb.common.Const;
 import com.bsb.common.ServerResponse;
-import com.bsb.pojo.Schedule;
 import com.bsb.pojo.Seat;
 import com.bsb.pojo.Ticket;
 import com.bsb.pojo.User;
@@ -32,8 +31,8 @@ public class TicketController {
     public ServerResponse<String> buyTicket(HttpSession session,
                                             @RequestBody Map<String,ArrayList<Seat>> seatsJson) {
         User user = (User) session.getAttribute(Const.CURRENT_USER);
-        if (user == null ) {
-            return ServerResponse.createByErrorMsg("未登录，请登录后进行操作");
+        if (user == null || user.getType() != 0) {
+            return ServerResponse.createByErrorMsg("身份信息验证失败，请重新登录");
         }
 
         ArrayList<Seat> seats = seatsJson.get("seats");
@@ -41,7 +40,7 @@ public class TicketController {
             return ServerResponse.createByErrorMsg("选择座位为空");
         }
 
-        return ticketService.buyTicket(seats);
+        return ticketService.buyTicket(seats, user);
 
     }
 
@@ -49,7 +48,7 @@ public class TicketController {
     public ServerResponse<String> sellTickets(HttpSession session,
                                               @RequestBody Map<String,ArrayList<Seat>> seatsJson) {
         User user = (User) session.getAttribute(Const.CURRENT_USER);
-        if (user == null ) {
+        if (user == null || user.getType() != 1) {
             return ServerResponse.createByErrorMsg("未登录，请登录后进行操作");
         }
 
@@ -59,6 +58,22 @@ public class TicketController {
         }
 
         return ticketService.sellTickets(user, seats);
+    }
+
+    /**
+     * 仅由用户操作查询自己的订单
+     * @param userId
+     * @param session
+     * @return
+     */
+    @GetMapping("/myTickets/{userId}")
+    public ServerResponse<List<Ticket>> getMyTickets(@PathVariable("userId") int userId, HttpSession session) {
+        User user = (User) session.getAttribute(Const.CURRENT_USER);
+        if (user == null || user.getType() != 0) {
+            return ServerResponse.createByErrorMsg("身份信息验证失败，请重新登录");
+        }
+
+        return ticketService.getMyTickets(userId);
     }
 
 }

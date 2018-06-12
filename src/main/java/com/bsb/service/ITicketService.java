@@ -7,13 +7,14 @@ import com.bsb.pojo.User;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public interface ITicketService {
 
     ServerResponse<List<Ticket>> getTicketsByScheduleId(int scheduleId);
 
-    ServerResponse<String> buyTicket(ArrayList<Seat> seats);
+    ServerResponse<String> buyTicket(ArrayList<Seat> seats, User user);
 
     ServerResponse<String> sellTickets(User user, ArrayList<Seat> seats);
+
+    ServerResponse<List<Ticket>> getMyTickets(int userId);
 }

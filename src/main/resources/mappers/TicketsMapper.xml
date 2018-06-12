@@ -9,13 +9,13 @@
     <insert id="buyTicket" parameterType="com.bsb.pojo.Ticket">
         INSERT INTO ticket_table
         (
-            movieId, hallId, startTime, seatRow, seatColumn, ticketPrice
+            movieId, hallId, startTime, seatRow, seatColumn, ticketPrice, userId
         )
         VALUES
         <foreach collection="list" item="ticket" index="index" separator=",">
          (
             #{ticket.movieId}, #{ticket.hallId}, #{ticket.startTime}, #{ticket.seatRow},
-            #{ticket.seatColumn}, #{ticket.ticketPrice}
+            #{ticket.seatColumn}, #{ticket.ticketPrice}, #{ticket.userId}
          )
         </foreach>
     </insert>

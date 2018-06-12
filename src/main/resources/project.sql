@@ -74,7 +74,9 @@ create table ticket_table(
   seatRow int not null,
   seatColumn int not null,
   ticketPrice double not null,
+--   type为1时是指该票是由售票员售出
   type int(1) default 0,
+  userId int default 0,
   createTime timestamp default now(),
   sellerId int not null default 0,
   foreign key (movieId) references movies_table (id),

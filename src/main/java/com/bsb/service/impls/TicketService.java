@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class TicketService implements ITicketService {
@@ -39,7 +38,7 @@ public class TicketService implements ITicketService {
     }
 
     @Override
-    public ServerResponse<String> buyTicket(ArrayList<Seat> seats) {
+    public ServerResponse<String> buyTicket(ArrayList<Seat> seats, User user) {
 
         Schedule schedule = scheduleMapper.getScheduleById(seats.get(0).getScheduleId());
         if (schedule == null) {
@@ -62,6 +61,7 @@ public class TicketService implements ITicketService {
             ticket.setTicketPrice(schedule.getPrice());
 //            用户买票设置type为0
             ticket.setType(0);
+            ticket.setUserId(user.getId());
             buyTickets.add(ticket);
         }
 
@@ -106,6 +106,17 @@ public class TicketService implements ITicketService {
         }
 
         return ServerResponse.createBySuccessMsg("售票成功!");
+    }
+
+    @Override
+    public ServerResponse<List<Ticket>> getMyTickets(int userId) {
+
+        List<Ticket> tickets = ticketMapper.getMyTickets(userId);
+        if (tickets.size() == 0) {
+            return ServerResponse.createByErrorMsg("抱歉，暂无订单");
+        }
+
+        return ServerResponse.createBySuccess("查询成功", tickets);
     }
 
 }
