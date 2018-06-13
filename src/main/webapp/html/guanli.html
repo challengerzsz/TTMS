@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<title>管理界面</title>
+	<script type="text/javascript" src="selectMovie.js"></script>
+	<link rel="stylesheet" type="text/css" href="guanli.css">
+</head>
+<body>
+	 <!-- 头部的 -->
+       <nav>
+       	   
+       </nav>
+        
+
+       <!--  内容 -->
+       <!-- 左边的导航栏 -->
+       <ul  id="leftNave">
+       	  <li style="background-color: #323C48;height:20px;">
+          	 <a href="manageSign.html"><img src="../image/menu.png" width="20px" id="menu" /></a>
+          </li>
+          <li class="leftNave">
+       	    <img src="../image/user.png"  width="20px" alt="影院管理" />
+       	  	<p>用户管理</p>
+       	  </li>
+       	  <li class="leftNave">
+       	    <img src="../image/movie1.png"  width="20px"  alt="影片管理" />
+       	  	<p>影片管理</p>
+       	  </li>
+       	  <li class="leftNave"> 
+       	    <img src="../image/show.png"  width="20px" alt="影院管理" />
+       	  	<p>演出计划管理</p>
+       	  </li>
+       	  <li class="leftNave">
+       	    <img src="../image/sale.png"  width="20px" alt="影院管理" />
+       	  	<p>销售管理</p>
+       	  </li>
+
+       </ul>
+
+       <ul id="content">
+            <li class="contentLeftNave">
+                   <ul class="userMenu">
+	       	   	   	  <li>
+	       	   	   	  	<p class="userMenuBtn">经理</p>
+	       	   	   	  </li>
+	       	   	   	  <li>
+	       	   	   	  	<p class="userMenuBtn">售票员</p>
+	       	   	   	  </li>
+	       	   	   </ul>
+	       	   	   <ul class="userContent">
+	       	   	      <a href="manageSign.html"><img src="../image/add.png"  id="addImg" alt="添加用户" title="添加用户" /></a>
+	       	   	      <!-- 这里是其中的经理的-->
+	       	   	   	  <li class="user" id="" style="display: block;">
+	       	   	   	  	  <table cellspacing="0px" >
+			        			<thead>
+			        				<tr>
+					    				<td>
+					    					<h4>编号</h4>
+					    				</td>
+					    				<td>
+					    					<h4>姓名</h4>
+					    				</td>
+					    				<td>
+					    					<h4>职位</h4>
+					    				</td>
+					    				<td>
+					    					<h4>职位调动</h4>
+					    				</td>
+					    			</tr>
+			        			</thead>
+			        			<tbody id="president">
+			        				<tr>
+					    				<td>
+					    					<p>1</p>
+					    				</td>
+					    				<td>
+					    					<p>111</p>
+					    				</td>
+					    				<td>
+					    					<p>经理</p>
+					    				</td>
+					    				<td>
+					    					<p class="slip">撤销</p>
+					    				</td>
+					    			</tr>
+			        			</tbody>
+			        		</table>
+	       	   	   	  </li>
+	       	   	   	  <li class="user" >
+			        		<table  cellspacing="0px" >
+			        			<thead>
+			        				<tr>
+					    				<td>
+					    					<h4>编号</h4>
+					    				</td>
+					    				<td>
+					    					<h4>姓名</h4>
+					    				</td>
+					    				<td>
+					    					<h4>职位</h4>
+					    				</td>
+					    				<td>
+					    					<h4>职位调动</h4>
+					    				</td>
+					    			</tr>
+			        			</thead>
+			        			<tbody id="solder">
+			        				<!-- 这里是售票员的 -->
+			        				<tr>
+					    				<td>
+					    					<p>1</p>
+					    				</td>
+					    				<td>
+					    					<p>111</p>
+					    				</td>
+					    				<td>
+					    					<p>售票员</p>
+					    				</td>
+					    				<td>
+					    					<p class="change">撤销</p>
+					    				</td>
+					    			</tr>
+			        			</tbody>
+			        			</tbody>
+			        		</table>
+			          </li>
+			        </ul>
+		    </li>
+       	   <li class="contentLeftNave" style="display: block;">
+       	       <!-- 这里显示的是其中的影片管理的菜单 -->
+	       	   	   <ul class="SecondMenu">
+	       	   	   	  <li>
+	       	   	   	  	<p class="SecondMenuBtn">已经上映</p>
+	       	   	   	  </li>
+	       	   	   	  <li>
+	       	   	   	  	<p class="SecondMenuBtn">未上映</p>
+	       	   	   	  </li>
+	       	   	   </ul>
+	       	   	   <ul class="movieContent">
+	       	   	      <!-- 已经上映 -->
+	       	   	   	  <li class="play" id="play" style="display: block;">
+	       	   	   	  	  <table cellspacing="0px" >
+			        			<thead>
+			        				<tr>
+			        				   <!--  <td>
+					    					<h4>id</h4>
+					    				</td> -->
+			        					<td>
+			        						<h4>影片名称</h4>
+			        					</td>
+			        					<td>
+			        						<h4>影片类型</h4>
+			        					</td>
+			        					<td>
+			        						<h4>电影简介</h4>
+			        					</td>
+			        					<td>
+			        						<h4>主演</h4>
+			        					</td>
+			        					<td>
+			        						<h4>想看</h4>
+			        					</td>
+			        					<td>
+			        						<h4>操作</h4>
+			        					</td>
+			        				</tr>
+			        			</thead>
+			        			<tbody id="AddMessage">
+			        				<!-- 这里是未添加的影片的信息 -->
+			        			</tbody>
+			        		</table>
+	       	   	   	  </li>
+	       	   	   	  <li class="play" id="unPlay">
+			        		<table  cellspacing="0px" >
+			        			<thead>
+			        				<tr>
+			        				  <!--  <td>
+					    					<h4>id</h4>
+					    				</td> -->
+			        					<td>
+			        						<h4>影片名称</h4>
+			        					</td>
+			        					<td>
+			        						<h4>影片类型</h4>
+			        					</td>
+			        					<td>
+			        						<h4>电影简介</h4>
+			        					</td>
+			        					<td>
+			        						<h4>主演</h4>
+			        					</td>
+			        					<td>
+			        						<h4>想看</h4>
+			        					</td>
+			        					<td>
+			        						<h4>操作</h4>
+			        					</td>
+			        				</tr>
+			        			</thead>
+			        			<tbody id="unAddMessage">
+			        				<!-- 这里是未添加的影片的信息 -->
+			        			</tbody>
+			        		</table>
+			        		<button id="addBtn"> 确认添加</button>
+			          </li>
+			        </ul>
+		    </li>
+		    <li class="contentLeftNave">
+		    <!-- 这个是演出计划的 -->
+		    	        <table cellspacing="0" >
+			        			<thead>
+			        				<tr>
+			        					<td>
+			        						<h4>影片名称</h4>
+			        					</td>
+			        					<td>
+			        						<h4>影片类型</h4>
+			        					</td>
+			        					<td>
+			        						<h4>电影简介</h4>
+			        					</td>
+			        					<td>
+			        						<h4>主演</h4>
+			        					</td>
+			        					<td>
+			        						<h4>想看</h4>
+			        					</td>
+			        					<td>
+			        						<h4>场次管理</h4>
+			        					</td>
+			        				</tr>
+			        			</thead>
+			        			<tbody id="show">
+			        				<!-- 这里是要这里展示的是我们已经选的 -->
+			        			</tbody>
+			            </table>
+		    </li>
+		    <li class="contentLeftNave">
+		    	<table id="sale" cellspacing="0">
+		    		<thead>
+		    			<tr>
+		    				<td>
+		    					<h4>名次</h4>
+		    				</td>
+		    				<td>
+		    					<h4>编号</h4>
+		    				</td>
+		    				<td>
+		    					<h4>姓名</h4>
+		    				</td>
+		    				<td>
+		    					<h4>销售额</h4>
+		    				</td>
+		    			</tr>
+		    		</thead>
+		    		<tbody>
+		    			<tr>
+		    			    <td>
+		    					<p>1111</p>
+		    				</td>
+		    				<td>
+		    					<p>1111</p>
+		    				</td>
+		    				<td>
+		    					<p>11111</p>
+		    				</td>
+		    				<td>
+		    					<p>1111</p>
+		    				</td>
+		    			</tr>
+		    		</tbody>
+		    	</table>
+		    </li>   		
+       </ul>
+</body>
+</html>
+<script type="text/javascript">
+	window.onload=function(){
+		style();
+		unAdd();
+		Add();
+		// sort();
+		choice(".SecondMenuBtn",".play");
+		choice(".leftNave",".contentLeftNave");
+		choice(".userMenuBtn",".user");
+
+		//演出计划的获取数据
+		show();
+
+		addInformation();
+
+     
+		
+};
+
+
+//样式的设计
+function style(){
+	var userMenu = document.querySelector(".userMenu");
+	var SecondMenu = document.querySelector(".SecondMenu");
+	var leftNave = document.getElementById("leftNave");
+	userMenu.style.height=leftNave.style.height =SecondMenu.style.height= (document.documentElement.clientHeight-35)+"px";
+}
+
+// 影片管理的部分
+        //获取其中的未添加的电影的信息
+function unAdd()
+		{
+			var xmlhttp;
+			if (window.XMLHttpRequest)
+			{
+				//  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+				xmlhttp=new XMLHttpRequest();
+			}
+			else
+			{
+				// IE6, IE5 浏览器执行代码
+				xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			xmlhttp.onreadystatechange=function()
+			{
+				if (xmlhttp.readyState==4 && xmlhttp.status==200)
+				{
+					var message = JSON.parse(xmlhttp.responseText);
+					var unPlay = document.getElementById('unPlay').getElementsByTagName('tbody')[0];
+					for (var i = 0; i < message.data.length; i++) {
+						var tr = document.createElement("tr");
+						// var td = document.createElement("td");
+						var td1 = document.createElement("td");
+						var td2 = document.createElement("td");
+						var td3 = document.createElement("td");
+						var td4 = document.createElement("td");
+						var td5 = document.createElement("td");
+						var td6 = document.createElement("td");
+						// var p =document.createElement("p");
+						// p.className="movieId";
+						var p1=document.createElement("p");
+						var p2=document.createElement("p");
+						var p3=document.createElement("p");
+						var p4=document.createElement("p");
+						var p5=document.createElement("p");
+						var p6=document.createElement("p");
+						p6.movieId=message.data[i].id;
+						// p.innerHTML=message.data[i].id;
+						p1.innerHTML=message.data[i].nm;
+						p2.innerHTML=message.data[i].cat;
+						p3.innerHTML=message.data[i].scm;
+						p4.innerHTML=message.data[i].star;
+						p5.innerHTML=message.data[i].snum;
+						p6.innerHTML="添加";
+						p6.className="add";
+						// td.appendChild(p);
+						td1.appendChild(p1);
+						td2.appendChild(p2);
+						td3.appendChild(p3);
+						td4.appendChild(p4);
+						td5.appendChild(p5);
+						td6.appendChild(p6);
+						// tr.appendChild(td);
+						tr.appendChild(td1);
+						tr.appendChild(td2);
+						tr.appendChild(td3);
+						tr.appendChild(td4);
+						tr.appendChild(td5);
+						tr.appendChild(td6);
+						unPlay.appendChild(tr);
+					}
+					addInformation();
+				}
+			}
+			xmlhttp.open("GET","/TTMS/movies/unselected",true);
+			xmlhttp.send();
+		}
+
+
+ //这里实现的把已经添加的电影进行信息展示
+function Add()
+		{
+			var xmlhttp;
+			if (window.XMLHttpRequest)
+			{
+				xmlhttp=new XMLHttpRequest();
+			}
+			else
+			{
+				xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			xmlhttp.onreadystatechange=function()
+			{
+				if (xmlhttp.readyState==4 && xmlhttp.status==200)
+				{
+					var message = JSON.parse(xmlhttp.responseText);
+					var play = document.getElementById('play').getElementsByTagName('tbody')[0];
+					for (var i = 0; i < message.data.length; i++) {
+						var tr = document.createElement("tr");
+						var td1 = document.createElement("td");
+						var td2 = document.createElement("td");
+						var td3 = document.createElement("td");
+						var td4 = document.createElement("td");
+						var td5 = document.createElement("td");
+						var td6 = document.createElement("td");
+						var p1=document.createElement("p");
+						var p2=document.createElement("p");
+						var input=document.createElement("input");
+						var p4=document.createElement("p");
+						var p5=document.createElement("p");
+						var p6=document.createElement("p");
+						p1.innerHTML=message.data[i].nm;
+						p2.innerHTML=message.data[i].cat;
+						input.value=message.data[i].scm;
+						p4.innerHTML=message.data[i].star;
+						p5.innerHTML=message.data[i].snum;
+						p6.innerHTML="删除";
+						p6.className="delete";
+						p6.movieId=message.data[i].id;
+						td1.appendChild(p1);
+						td2.appendChild(p2);
+						td3.appendChild(input);
+						td4.appendChild(p4);
+						td5.appendChild(p5);
+						td6.appendChild(p6);
+						tr.appendChild(td1);
+						tr.appendChild(td2);
+						tr.appendChild(td3);
+						tr.appendChild(td4);
+						tr.appendChild(td5);
+						tr.appendChild(td6);
+						play.appendChild(tr);
+					}
+					cancel();
+					//inputChange();
+				}
+			}
+			xmlhttp.open("GET","/TTMS/movies/selected",true);
+			xmlhttp.send();
+	}
+
+//这里实现的是其中的添加的操作
+function addInformation(){
+		    var AddMessage = document.getElementById("play");
+		    var unAddMessage = document.getElementById("unAddMessage");
+		    var unAddMessageBox = document.querySelectorAll(".add");
+		    var message = [];
+		    var xmlhttp;
+		    if (window.XMLHttpRequest)   xmlhttp=new XMLHttpRequest();
+			else						xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		    for (var i = unAddMessageBox.length - 1; i >= 0; i--) {
+		    	unAddMessageBox[i].onclick=function(){
+		             message.push(this.movieId);
+		             this.innerHTML="已添加";
+		       }
+		     }
+
+		     var objMessage = {
+		     	"moviesId":message
+		     };
+
+		     var addBtn = document.getElementById("addBtn");
+		     addBtn.onclick=function(){
+                 xmlhttp.onreadystatechange=function()
+				{
+					if (xmlhttp.readyState==4 && xmlhttp.status==200)
+					{
+						alert("添加成功");
+						for (var i = unAddMessageBox.length - 1; i >= 0; i--)
+						{
+							if(unAddMessageBox[i].innerHTML=="已添加")
+							{
+									unAddMessage.removeChild(unAddMessageBox[i].parentNode.parentNode);
+							}
+						}
+								
+					}
+				}
+				xmlhttp.open("POST","/TTMS/movies/select",true);
+				xmlhttp.setRequestHeader("Content-type","application/json");
+				xmlhttp.send(JSON.stringify(objMessage));
+		     }
+
+}
+//这里实现的是其中的影片信息删除的操作
+function cancel(){
+	var AddMessage = document.querySelector("#AddMessage");
+	var xmlhttp;
+	if (window.XMLHttpRequest) xmlhttp=new XMLHttpRequest();
+	else                       xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	var cancelBtnGroups = document.querySelectorAll(".delete");
+	for (var i = cancelBtnGroups.length - 1; i >= 0; i--) {
+		cancelBtnGroups[i].index=i;
+		cancelBtnGroups[i].onclick=function(){
+			var movieId=this.movieId;
+			xmlhttp.onreadystatechange=function()
+			{
+				if (xmlhttp.readyState==4 && xmlhttp.status==200)
+				{
+					var message = JSON.parse(xmlhttp.responseText);
+					if(message.status=="1"){
+						alert("删除成功");
+					}
+					
+				}
+			}
+		AddMessage.removeChild(this.parentNode.parentNode);
+		 var information={
+		 	"id":movieId
+		 }
+	     xmlhttp.open("POST","/TTMS/movies/delete",true);
+	     xmlhttp.setRequestHeader("Content-type","application/json");
+	     xmlhttp.send(JSON.stringify(information));
+		}
+	}
+}
+
+
+//input进行聚焦的时候出现样式，并且不聚焦的时候改变其中的value,并且发送请求
+//这里实现的是其中的失去焦点的时候修改电影的信息
+function inputChange(){
+	var AddMessage = document.querySelector("#AddMessage");
+	var inputBox = AddMessage.getElementsByTagName('input');
+	for (var i = inputBox.length - 1; i >= 0; i--) {
+		inputBox[i].onfocus=function()
+		{
+              this.style.border="1px solid #EAEDF2";
+		}
+		inputBox[i].onblur=function()
+		{
+			this.style.border="1px solid white";
+			var message = this.value;
+			if (window.XMLHttpRequest) xmlhttp=new XMLHttpRequest();
+	        else                       xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+			xmlhttp.onreadystatechange=function()
+			{
+				if (xmlhttp.readyState==4 && xmlhttp.status==200)
+				{
+					var message = JSON.parse(xmlhttp.responseText);
+					if(message.status=="1"){
+						alert("修改成功");
+					}
+					
+				}
+			}
+	     xmlhttp.open("POST","/TTMS/movies/"+movieId,true);
+	     xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	     xmlhttp.send(JSON.stringify({"id":movieId}));
+		}
+	 }
+}
+
+
+
+//这里是实现演出计划的管理的
+
+//将演出计划的信息进行展示
+function show()
+		{
+			var xmlhttp;
+			if (window.XMLHttpRequest)
+			{
+				xmlhttp=new XMLHttpRequest();
+			}
+			else
+			{
+				xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			xmlhttp.onreadystatechange=function()
+			{
+				if (xmlhttp.readyState==4 && xmlhttp.status==200)
+				{
+					var message = JSON.parse(xmlhttp.responseText);
+					var play = document.getElementById('show');
+					for (var i = 0; i < message.data.length; i++) {
+						var tr = document.createElement("tr");
+						var a = document.createElement("a");
+						a.setAttribute("href","detail.html?movieId="+message.data[i].id+"&dur="+message.data[i].dur);
+						var td1 = document.createElement("td");
+						var td2 = document.createElement("td");
+						var td3 = document.createElement("td");
+						var td4 = document.createElement("td");
+						var td5 = document.createElement("td");
+						var td6 = document.createElement("td");
+						var p1=document.createElement("p");
+						var p2=document.createElement("p");
+						var p3 = document.createElement("p");
+						var p4=document.createElement("p");
+						var p5=document.createElement("p");
+						var p6=document.createElement("p");
+						p1.innerHTML=message.data[i].nm;
+						p2.innerHTML=message.data[i].cat;
+						p3.innerHTML=message.data[i].scm;
+						p4.innerHTML=message.data[i].star;
+						p5.innerHTML=message.data[i].snum;
+						p6.innerHTML="详情";
+						p6.className="detail";
+						a.appendChild(p6);
+						td1.appendChild(p1);
+						td2.appendChild(p2);
+						td3.appendChild(p3);
+						td4.appendChild(p4);
+						td5.appendChild(p5);
+						td6.appendChild(a);
+						tr.appendChild(td1);
+						tr.appendChild(td2);
+						tr.appendChild(td3);
+						tr.appendChild(td4);
+						tr.appendChild(td5);
+						tr.appendChild(td6);
+						play.appendChild(tr);
+
+
+					}
+				}
+			}
+			xmlhttp.open("GET","http://120.79.196.225:8080/TTMS/movies/selected",true);
+			xmlhttp.send();
+	}
+
+
+
+
+
+
+ 
+
+
+
+//这里销售排行
+function sort()
+  {
+	var xmlhttp;
+	if (window.XMLHttpRequest)
+	{
+		xmlhttp=new XMLHttpRequest();
+	}
+	else
+	{
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	xmlhttp.onreadystatechange=function()
+	{
+		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		{
+			console.log(xmlhttp.responseText);
+			var message = JSON.parse(xmlhttp.responseText);
+			if(message.status=="1"){
+				var trueMessage = message.data;
+				var tbody = document.getElementById("sale").getElementsByTagName("tbody")[0];
+				for (var i = trueMessage.length - 1; i >= 0; i--) {
+					 var tr = document.createElement("tr");
+					 var td1 = document.createElement("td");
+					 var p1 = document.createElement("p");
+					 p1.innerHTML=message.data[i].id;
+					 var td2 = document.createElement("td");
+					 var p2 = document.createElement("p");
+					 p2.innerHTML=message.data[i].userName;
+					 var td3 = document.createElement("td");
+					 var p3 = document.createElement("p");
+					 p3.innerHTML=message.data[i].sold;
+
+					 td1.appendChild(p1);
+					 td2.appendChild(p2);
+					 td3.appendChild(p3);
+
+					 tr.appendChild(td1);
+					 tr.appendChild(td2);
+					 tr.appendChild(td3);
+
+					 tbody.appendChild(tr);
+					
+				}
+			}
+			else{
+				alert("身份获取失败,请您重新登陆");
+			}
+			
+		}
+	}
+	xmlhttp.open("GET","http://120.79.196.225:8080/TTMS/analysis/rank",true);
+	xmlhttp.send();
+}
+
+
+
+//这里实现的是其中的选项卡的
+		 function  choice(obj1,obj2)
+		{
+		 	var choice = document.querySelectorAll(obj1);
+		 	var contentBox = document.querySelectorAll(obj2);
+		 	for (var i = choice.length - 1; i >= 0; i--) {
+		 		choice[i].index=i;
+		 		choice[i].onclick=function(){
+                      for (var j = contentBox.length - 1; j >= 0; j--) 
+                      {
+		 			      contentBox[j].style.display="none";
+		 		      }
+		 		      contentBox[this.index].style.display="block";
+		 		}
+		 	}
+
+		} 
+
+
+
+
+
+
+
+
+
+
+
+
+</script>

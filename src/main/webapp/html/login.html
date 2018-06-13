@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>登陆</title>
+	<script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+	<script src="../materialize-v0.97.8/materialize/js/materialize.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../materialize-v0.97.8/materialize/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="login.css">
+    <script type="text/javascript" src="cookie.js"></script>
+</head>
+<body>
+ 	<div class="row">
+	    <!-- <form class="col s12"> -->
+	      <div class="row">
+		        <div class="input-field col s11">
+		          <i class="material-icons prefix"><img src="../image/person.png"></i>
+		          <input id="icon_prefix" type="text" class="validate   username" name="username" />
+		        </div>
+		        <br/>
+		        <br/>
+		        <div class="input-field col s11">
+		          <i class="material-icons prefix"><img src="../image/mi.png"></i>
+		          <input id="icon_telephone" type="password" class="validate  password" name="password">
+		        </div>
+		      </div>
+		     <button class="btn waves-effect waves-light" id="login">登陆</button>
+		     <a href="sign.html" id="btn" >去注册</a>
+	      </div>
+	    <!-- </form> -->
+  </div>
+</body>
+</html>
+<script type="text/javascript">
+
+    $(document).ready(function(){
+   	 	 $("#login").click(function(){
+ 				$.ajax({
+			          type: "POST",
+			          url: "/TTMS/users/login",
+			          data: JSON.stringify(getData()),
+			          contentType: "application/json; charset=utf-8",
+			          //  beforeSend: function(xhr){xhr.setRequestHeader('Access-Control-Allow-Origin', '*')},
+			          // dataType: "jsonp",
+			          //下面的是处理其中的cookie
+			          xhrFields: {
+			            withCredentials: true
+			          },
+			          crossDomain: true,
+			          success:function(res){
+			              alert(res);
+
+			              console.log(res);
+
+			            var personInformation = res;
+			            if(personInformation.status=="1"){
+			            	alert("登陆成功");
+			            	if(personInformation.data.type=="0")       window.location.href="index.html";
+							else if(personInformation.data.type=="1")  window.location.href="ticketing.html";
+							else if(personInformation.data.type=="2")  window.location.href="guanli.html";
+			            }
+
+			          },
+			          error:function(err){
+			            console.log(err);
+			          }
+			        })
+   	 	 });
+
+
+   	 	 function getData(){
+   	 	 	var userMessage ={
+   	 	 		"username":$(".username").eq(0).val(),
+			     "password":$(".password").eq(0).val()
+   	 	 	};
+   	 	 	return userMessage;
+   	 	 }
+
+   	 })
+   </script>

@@ -2,6 +2,7 @@ package com.bsb.service;
 
 import com.bsb.common.ServerResponse;
 import com.bsb.pojo.Movie;
+import com.bsb.pojo.UpdateMovie;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,5 +25,5 @@ public interface IMoviesService {
 
     ServerResponse<String> deleteSelectedMovie(Map<String, String> deleteMovieJson);
 
-    ServerResponse<Movie> updateSelectedMovie(Movie updateMovie);
+    ServerResponse<String> updateSelectedMovie(Map<String, List<UpdateMovie>> updateMovieJson);
 }

@@ -15,4 +15,9 @@ public interface IUserService {
     ServerResponse<User> queryUserInfo(String userName);
 
     ServerResponse<String> deleteByUserId(Map<String, List<Integer>> userIdsJson);
+
+    ServerResponse<List<User>> getAllManagers();
+
+    ServerResponse<List<User>> getAllSellers();
+
 }

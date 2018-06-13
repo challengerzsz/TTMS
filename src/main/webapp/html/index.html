@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>主页</title>
+	<link rel="stylesheet" type="text/css" href="common.css" />
+	<link rel="stylesheet" type="text/css" href="index.css" />
+	<script type="text/javascript" src="selectMovie.js"></script>
+</head>
+<body>
+	<div id="nav">
+	      	<img src="../image/小仙女.png"  alt="图标"  width="200px"  id="tuBiao"/>
+          <ul>
+              <li>
+                 <a href=""><p>首页</p></a>
+              </li>
+              <li>
+                <a href=""><p>电影</p></a>
+              </li>
+              <li>
+                <a href=""><p>影院</p></a>
+              </li>
+              <li>
+                <a href=""><p>榜单</p></a>
+              </li>
+              <li>
+                <a href=""><p>热点</p></a>
+              </li>
+           </ul>
+           <div id="login">
+           	   <a href="login.html"><img src="../image/login.png"  alt="个人"  width="32px" /></a>
+           	   <div style="clear: both;"></div>
+           	   <a href="person.html"><p id="userMessage">用户信息</p></a>
+           </div>
+       </div>
+
+     <!--  中间的内容部分 -->
+     <div id="LunBo">
+         <img src="http://p0.meituan.net/mmc/039bd9e99555d84008cc46305dfeb99f105211.jpg" />
+      </div>
+
+
+     <!--这里是其中的信息展示-->
+     <div  id="infrmation">
+         <div id="infrmationLeft">
+             <p class="hot">
+                正在热映&nbsp;&nbsp;&nbsp;(34&nbsp;部)
+             </p>
+             <p id="more">
+                &gt;更多
+             </p>
+             <div style="clear:both;"></div>
+              <ul id="ying">
+
+              </ul>
+         </div>
+         <div id="infrmationRight">
+            <p class="hot">
+                今日票房
+             </p>
+             <div style="clear:both;"></div>
+             <ul id="list">
+                <li id="topTicket">
+                   <img src="http://p0.meituan.net/movie/546aa4b29897e9eb3830eb021b8cce4f2259474.jpg@120w_80h_1e_1c"/>
+                   <div>
+                      <p id="topTicketName">超时空同居</p>
+                      <p class="ticket" id="topSale">1441.7万</p>
+                   </div>
+                </li>
+                <!-- 这里展示就是其中的而票房的 -->
+             </ul>
+            <!--  <a href=""></a> -->
+         </div>
+     </div>
+
+       <!--  页尾 -->
+   <div style="clear:both;"></div>
+       <div id="footer">
+          <p>违法和不良信息举报电话: 4006018900 举报邮箱: jubao.maoyan@maoyan.com</p>
+          <p>友情链接 : <span>美团网</span>  <span>美团下载</span></p>
+          <p>©2016 猫眼电影 maoyan.com 京ICP证160733号 京ICP备16022489号-1 京公网安备 11010502030881号 网络文化经营许可证 电子公告服务规则<p>
+          <p>北京猫眼文化传媒有限公司</p>
+   </div>
+</body>
+</html>
+<!-- <script type="text/javascript" src="http://120.79.196.225:8080/TTMS/movies/unselected"></script>
+<script type="text/javascript">
+	function callback(data){
+
+           alert("请求成功!!");
+
+          console.log(data);
+
+}
+</script> -->
+<script type="text/javascript">
+         show();
+         sale();
+
+
+
+
+//这里是获取其中的票房
+ function sale()
+ {
+	var xmlhttp;
+	if (window.XMLHttpRequest)
+	{
+		//  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+		xmlhttp=new XMLHttpRequest();
+	}
+	else
+	{
+		// IE6, IE5 浏览器执行代码
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	xmlhttp.onreadystatechange=function()
+	{
+		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		{
+			var message = JSON.parse(xmlhttp.responseText);
+			var list = document.getElementById('list');
+
+			//这里设置的是其中的第一
+			var top = document.getElementById("topTicket");
+			var topImg = top.getElementsByTagName('img')[0];
+			topImg.style.width=120+"px";
+			topImg.style.height=80+"px";
+			var topTicketName = document.getElementById("topTicketName");
+			var topSale = document.getElementById("topSale");
+			topImg.setAttribute("src",message.data[0].img);
+			topTicketName.innerHTML=message.data[0].nm;
+			topSale.innerHTML=message.data[0].snum;
+
+			for (var i = 0; i < message.data.length; i++) {
+				var a = document.createElement("a");
+				a.setAttribute("href","performance.html?movieId="+message.data[i].id);
+				var li = document.createElement("li");
+				li.className="sale";
+				var p1 = document.createElement("p");
+				p1.className="order"
+				var p2 = document.createElement("p");
+				p2.className="movie_name";
+				var p3 = document.createElement("p");
+                p3.className="ticket";
+                p1.innerHTML=i+1;
+                p2.innerHTML=message.data[i].nm;
+                p3.innerHTML=message.data[i].snum;
+                li.appendChild(p1);
+                li.appendChild(p2);
+                li.appendChild(p3);
+                a.appendChild(li);
+                list.appendChild(a);
+			}
+		}
+	}
+	xmlhttp.open("GET","/TTMS/movies/boxOffice",true);
+	xmlhttp.send();
+ }
+
+
+
+
+</script>

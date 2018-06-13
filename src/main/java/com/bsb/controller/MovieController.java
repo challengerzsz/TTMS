@@ -2,6 +2,7 @@ package com.bsb.controller;
 
 import com.bsb.common.ServerResponse;
 import com.bsb.pojo.Movie;
+import com.bsb.pojo.UpdateMovie;
 import com.bsb.service.IMoviesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -66,11 +67,11 @@ public class MovieController {
 
 
     @PostMapping("/update")
-    public ServerResponse<Movie> updateSelectedMovie(Movie updateMovie) {
-        if (updateMovie == null) {
+    public ServerResponse<String> updateSelectedMovie(@RequestBody Map<String, List<UpdateMovie>> updateMovieJson) {
+        if (updateMovieJson == null) {
             return ServerResponse.createByErrorMsg("传入参数为空");
         }
 
-        return moviesService.updateSelectedMovie(updateMovie);
+        return moviesService.updateSelectedMovie(updateMovieJson);
     }
 }

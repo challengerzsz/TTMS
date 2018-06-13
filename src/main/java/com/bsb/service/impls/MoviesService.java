@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.bsb.common.ServerResponse;
 import com.bsb.mapper.IMoviesMapper;
 import com.bsb.pojo.Movie;
+import com.bsb.pojo.UpdateMovie;
 import com.bsb.service.IMoviesService;
 import com.bsb.util.HttpClientUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,6 @@ public class MoviesService implements IMoviesService {
 
         String moviesJson = HttpClientUtil.getMainMovie();
 
-//        logger.info(motviesJson);
 
         JSONObject jsonObject = JSONObject.parseObject(moviesJson);
 //        logger.info("test here");
@@ -123,14 +123,16 @@ public class MoviesService implements IMoviesService {
     }
 
     @Override
-    public ServerResponse<Movie> updateSelectedMovie(Movie updateMovie) {
+    public ServerResponse<String> updateSelectedMovie(Map<String, List<UpdateMovie>> updateMovieJson) {
 
-        int resultCount  = moviesMapper.updateSelectedMovie(updateMovie);
+        List<UpdateMovie> updateMovies = updateMovieJson.get("updateMovieIds");
+
+        int resultCount  = moviesMapper.updateSelectedMovie(updateMovies);
 
         if (resultCount == 0) {
             return ServerResponse.createByErrorMsg("更新影片信息失败");
         }
 
-        return ServerResponse.createBySuccess("更新影片信息成功", updateMovie);
+        return ServerResponse.createBySuccess("更新影片信息成功");
     }
 }

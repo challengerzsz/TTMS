@@ -21,4 +21,11 @@ public interface IUserMapper {
     User queryUserInfo(String userName);
 
     int deleteByUserId(List<Integer> userIds);
+
+    @Select("SELECT * FROM user_table WHERE type = 2")
+    List<User> getAllManagers();
+
+    @Select("SELECT * FROM user_table WHERE type = 1")
+    List<User> getAllSellers();
+
 }

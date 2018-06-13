@@ -80,4 +80,27 @@ public class UserController {
         return userService.deleteByUserId(userIdsJson);
 
     }
+
+    @GetMapping("/managers")
+    public ServerResponse<List<User>> getAllManagers(HttpSession session) {
+
+        User user = (User) session.getAttribute(Const.CURRENT_USER);
+        if (user == null || user.getType() != 2) {
+            return ServerResponse.createByErrorMsg("身份信息认证失败，请重新登录");
+        }
+
+        return userService.getAllManagers();
+    }
+
+    @GetMapping("/sellers")
+    public ServerResponse<List<User>> getAllSellers(HttpSession session) {
+
+        User user = (User) session.getAttribute(Const.CURRENT_USER);
+        if (user == null || user.getType() != 2) {
+            return ServerResponse.createByErrorMsg("身份信息认证失败，请重新登录");
+        }
+
+        return userService.getAllSellers();
+    }
+
 }

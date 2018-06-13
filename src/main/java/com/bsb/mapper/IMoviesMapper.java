@@ -1,6 +1,7 @@
 package com.bsb.mapper;
 
 import com.bsb.pojo.Movie;
+import com.bsb.pojo.UpdateMovie;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -28,6 +29,5 @@ public interface IMoviesMapper {
     @Update("UPDATE movies_table SET status = 0 WHERE id = #{deleteMovieId} AND status = 1")
     int deleteSelectedMovie(String deleteMovieId);
 
-    @Update("UPDATE movies_table SET imax = #{updateMovie.imax} WHERE id = #{updateMovie.id}")
-    int updateSelectedMovie(Movie updateMovie);
+    int updateSelectedMovie(List<UpdateMovie> updateMovie);
 }

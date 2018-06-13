@@ -90,5 +90,35 @@ public class UserService implements IUserService {
         return ServerResponse.createBySuccessMsg("删除用户成功");
     }
 
+    @Override
+    public ServerResponse<List<User>> getAllManagers() {
+
+        List<User> managers = userMapper.getAllManagers();
+        if (managers.size() == 0) {
+            return ServerResponse.createByErrorMsg("无经理信息");
+        }
+
+        for (User user : managers) {
+            user.setPassword(StringUtils.EMPTY);
+        }
+
+        return ServerResponse.createBySuccess("查询成功", managers);
+    }
+
+    @Override
+    public ServerResponse<List<User>> getAllSellers() {
+
+        List<User> sellers = userMapper.getAllSellers();
+        if (sellers.size() == 0) {
+            return ServerResponse.createByErrorMsg("无售票员信息");
+        }
+
+        for (User user : sellers) {
+            user.setPassword(StringUtils.EMPTY);
+        }
+
+        return ServerResponse.createBySuccess("查询成功", sellers);
+    }
+
 
 }
