@@ -1,0 +1,80 @@
+*{
+         	padding:0;
+         	margin:0;
+         }
+          #infrmationLeft{
+          	  margin:20px auto;
+		      width:85%;
+         }
+    .hot{
+      float:left;
+      width:300px;
+      font-size:26px;
+      color: #ef4238;
+   }
+
+   #infrmationLeft #more{
+      float:right;
+      margin:20px 60px 0 0;
+      width:50px;
+      text-align:left;
+      font-size: 14px;
+      line-height: 16px;
+      color: #ef4238;
+   }
+   #infrmationLeft #more:hover{
+       text-decoration:underline;
+       cursor: pointer;
+       text-decoration: underline;
+   }
+
+   #ying{
+      width:100%;
+      margin:10px auto;
+   }
+
+   #ying li{
+    list-style:none;
+    float:left;
+    margin:10px;
+    width:160px;
+    border:1px solid #EFEFEF;
+    cursor: pointer;
+    overflow: hidden;
+    -webkit-transition: all 0.23s;
+   }
+   #ying li:hover{
+		box-shadow: 2px 2px 2px 2px #CCCCCC;
+   }
+    /*#ying li:hover img{
+    	-webkit-transform: scale(1.2,1.1);
+    }*/
+   #ying li .buy{
+     margin-top:5px;
+     height:39px;
+     line-height:39px;
+     color:black;
+     text-align:center;
+     color: #ef4238;
+   }
+   #ying li .buy:hover{
+     background-color: #ef4238;
+     color:#fff !important;
+   }
+   #ying li .movieName{
+      margin: -35px 10px 0 10px;;
+      font-size: 16px;
+      line-height: 22px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color:white;
+      background-color: -webkit-linear-gradient(white, black); /* Safari 5.1 - 6.0 */
+      background-color: -o-linear-gradient(white, black); /* Opera 11.1 - 12.0 */
+      background-color: -moz-linear-gradient(white, black); /* Firefox 3.6 - 15 */
+      background-color: linear-gradient(white, black); /* 标准的语法（必须放在最后） */
+   }
+    #ying li img{
+       width:160px;
+       height:220px;
+    }

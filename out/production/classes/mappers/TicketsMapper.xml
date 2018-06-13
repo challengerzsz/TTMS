@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.bsb.mapper.ITicketMapper">
+
+    <resultMap id="BaseResultMap" type="com.bsb.pojo.Ticket"/>
+
+    <insert id="buyTicket" parameterType="com.bsb.pojo.Ticket">
+        INSERT INTO ticket_table
+        (
+            movieId, hallId, startTime, seatRow, seatColumn, ticketPrice, userId
+        )
+        VALUES
+        <foreach collection="list" item="ticket" index="index" separator=",">
+         (
+            #{ticket.movieId}, #{ticket.hallId}, #{ticket.startTime}, #{ticket.seatRow},
+            #{ticket.seatColumn}, #{ticket.ticketPrice}, #{ticket.userId}
+         )
+        </foreach>
+    </insert>
+
+    <insert id="sellTicket" parameterType="com.bsb.pojo.Ticket">
+        INSERT INTO ticket_table
+        (
+        movieId, hallId, startTime, seatRow, seatColumn, ticketPrice, type, sellerId
+        )
+        VALUES
+        <foreach collection="list" item="ticket" index="index" separator=",">
+            (
+            #{ticket.movieId}, #{ticket.hallId}, #{ticket.startTime}, #{ticket.seatRow},
+            #{ticket.seatColumn}, #{ticket.ticketPrice}, #{ticket.type}, #{ticket.sellerId}
+            )
+        </foreach>
+    </insert>
+
+    <delete id="returnTickets" parameterType="java.util.List">
+
+        DELETE FROM ticket_table WHERE userId = #{userId} AND id IN
+
+        <foreach item="id" collection="ticketsIds" index="index" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+
+    </delete>
+
+</mapper>

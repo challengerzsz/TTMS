@@ -1,0 +1,27 @@
+      *{
+			padding:0;
+			margin:0;
+		}
+
+		body{
+			background-image: url(../image/movie.jpg);
+			background-size: 100% 100%;
+			background-attachment: fixed;
+		}
+		.row{
+			position: relative;
+			position: fixed;  top:16%; right:15%;
+			padding:20px;
+			width:350px;
+			height:320px;
+			background-color: white;
+			border-radius: 20px;
+		}
+		#btn{
+			position: absolute;bottom:10%; left:10%;
+			text-decoration: underline;
+		}
+		#login{
+			position: absolute;bottom:20%; left:35px;
+			width:80%;
+		}

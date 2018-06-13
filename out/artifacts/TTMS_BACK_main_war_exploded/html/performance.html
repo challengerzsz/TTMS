@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>演出厅</title>
+	<link rel="stylesheet" type="text/css" href="common.css" />
+	<link rel="stylesheet" type="text/css" href="performance.css" />
+</head>
+<body>
+    <!-- 头部导航 -->
+	<div id="nav">
+          <img src="../image/小仙女.png"  alt="图标"  width="200px" id="tuBiao"/>
+          <ul>
+              <li>
+                 <a href=""><p>首页</p></a>
+              </li>
+              <li>
+                <a href=""><p>电影</p></a>
+              </li>
+              <li>
+                <a href=""><p>影院</p></a>
+              </li>
+              <li>
+                <a href="ranking.html"><p>榜单</p></a>
+              </li>
+              <li>
+                <a href=""><p>热点</p></a>
+              </li>
+           </ul>
+       </div>
+
+
+       <!-- 电影信息 -->
+       <div class="banner">
+       	   <img src="http://p0.meituan.net/movie/200526fd0facc141caeef984314f7ef8328722.jpg@464w_644h_1e_1c" class="movieImg">
+       	   <div class="details">
+       	   	   <h3>深海越狱</h3>
+       	   	  <!--  <p class="movie_English">Black&nbsp;Water</p> -->
+       	   	   <ul>
+       	   	   	  <li>
+       	   	   	  	<p class="type">剧情,动作，犯罪</p>
+       	   	   	  </li>
+       	   	   	  <li>
+       	   	   	  	<p class="during"><span id="time">美国/104分钟</span><span>分钟</span></p>
+       	   	   	  </li>
+       	   	   	  <li>
+       	   	   	  	<p class="show">2016-06-08大陆上映</p>
+       	   	   	  </li>
+       	   	   </ul>
+       	   </div>
+       	   <div class="action-button">
+       	   	  <div class="wish"><img src="../image/heart.png" width="18px" /><p>想看</p></div>
+       	   	  <div class="wish"><img src="../image/star.png"  width="18px"/><p>评分</p></div>
+       	   	  <div style="clear: both;"></div>
+       	   	  <div class="buy wish">特惠购票</div>
+       	   </div>
+       	   <div class="movie-stats-container">
+       	   	    <p class="movie-index-title">
+       	   	   	 用户评分
+       	   	   </p>
+       	   	   <div>
+       	   	   	 <span class="index-left no-info">暂无</span>
+       	   	   </div>
+       	   	   <div style="clear: both;"></div>
+       	   	   <p class="movie-index-title">
+       	   	   	 累计票房
+       	   	   </p>
+       	   	   <div>
+       	   	   	  <p><span class="stonefont">25</span><!-- <span class="unit">万</span> --></p>
+       	   	   </div>
+       	   </div>
+       </div>
+
+
+
+       <!-- 这里展示的就是其中的演出厅 -->
+       <div id="showHouse">
+       	  <h2>场次列表</h2>
+       	  <ul>
+       	  	 <!-- <li class="cinema-cell">
+       	  	 	 <p class="cinema-name">万达国际影院</p>
+       	  	 	 <p class="address">
+       	  	 	 	开始时间-结束时间
+       	  	 	 </p>
+                 <div class="priceBox">
+                 	<p>
+       	  	 	 	    <span class="rmb">￥</span><span class="stonefont">24.5</span><span>起</span>
+       	  	 	    </p>
+       	  	 	    <a href="">选座</a>
+                 </div>
+       	  	 </li> -->
+       	  	 <!-- 这里是其中的演出计划 -->
+       	  </ul>
+       </div>
+
+		<!-- 页尾 -->
+
+       <div style="clear:both;"></div>
+       <div id="footer">
+          <p>违法和不良信息举报电话: 4006018900 举报邮箱: jubao.maoyan@maoyan.com</p>
+          <p>友情链接 : <span>美团网</span>  <span>美团下载</span></p>
+          <p>©2016 猫眼电影 maoyan.com 京ICP证160733号 京ICP备16022489号-1 京公网安备 11010502030881号 网络文化经营许可证 电子公告服务规则<p>
+          <p>北京猫眼文化传媒有限公司</p>
+        </div>
+</body>
+</html>
+<script type="text/javascript">
+
+	sale();
+	plan();
+
+
+   function  getParam(name) {
+        var search = document.location.search;
+        //alert(search);
+        var pattern = new RegExp("[?&]" + name + "\=([^&]+)", "g");
+        var matcher = pattern.exec(search);
+        var items = null;
+        if (null != matcher) {
+            try {
+                items = decodeURIComponent(decodeURIComponent(matcher[1]));
+            } catch (e) {
+                try {
+                    items = decodeURIComponent(matcher[1]);
+                } catch (e) {
+                    items = matcher[1];
+                }
+            }
+        }
+        return items;
+    };
+
+
+   var movieId = getParam("movieId");
+
+	function sale()
+ {
+	var xmlhttp;
+	if (window.XMLHttpRequest)
+	{
+		//  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+		xmlhttp=new XMLHttpRequest();
+	}
+	else
+	{
+		// IE6, IE5 浏览器执行代码
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	xmlhttp.onreadystatechange=function()
+	{
+		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		{
+			var message = JSON.parse(xmlhttp.responseText);
+			if(message.status=="1"){
+				var trueMessage=message.data;
+				var img = document.querySelectorAll(".banner")[0].getElementsByTagName('img')[0];
+				img.setAttribute("src",trueMessage.img);
+				var name = document.querySelectorAll(".details")[0].getElementsByTagName('h3')[0];
+				name.innerHTML=trueMessage.nm;
+				var type = document.querySelectorAll(".type")[0];
+				type.innerHTML=trueMessage.cat;
+				var time = document.getElementById('time');
+				time.innerHTML=trueMessage.dur;
+				var show = document.querySelectorAll(".show")[0];
+				show.innerHTML=trueMessage.showInfo;
+				var noInfo = document.querySelectorAll(".no-info")[0];
+				noInfo.innerHTML=trueMessage.sc;
+				var num = document.querySelectorAll(".stonefont")[0];
+				num.innerHTML=trueMessage.snum;
+			}
+			else{
+				alert("后台还没有添加对应的影片信息");
+			}
+
+			
+		}
+	}
+	xmlhttp.open("GET","/TTMS/movies/"+getParam("movieId"),true);
+	xmlhttp.send();
+ }
+
+
+ function plan()
+ {
+	var xmlhttp;
+	if (window.XMLHttpRequest)
+	{
+		//  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+		xmlhttp=new XMLHttpRequest();
+	}
+	else
+	{
+		// IE6, IE5 浏览器执行代码
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	xmlhttp.onreadystatechange=function()
+	{
+		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		{
+			var message = JSON.parse(xmlhttp.responseText);
+			if(message.status=="1"){
+                var trueMessage=message.data;
+			    var messageHouse = document.getElementById("showHouse").getElementsByTagName('ul')[0];
+			   for (var i = trueMessage.length - 1; i >= 0; i--) {
+					var li = document.createElement("li");
+					 li.className="cinema-cell";
+					 var cinemaName = document.createElement("p");
+					 cinemaName.className="cinema-name";
+					 // 本来是添加地址的，突然换成时间了
+					 var address = document.createElement("p");
+					 address.className="address";
+					 var priceBox = document.createElement("div");
+					 priceBox.className="priceBox";
+					 var p = document.createElement("p");
+					 var rmb = document.createElement("span");
+					 rmb.className="rmb";
+					 var stonefont = document.createElement("span");
+					 stonefont.className="stonefont";
+					 var start = document.createElement("span");
+					 start.innerHTML="起";
+					 var a = document.createElement("a");
+					 console.log(trueMessage[i].hallId);
+					 a.setAttribute("href","sale.html?scheduleId="+trueMessage[i].id+"&movieId="+movieId);
+					 cinemaName.innerHTML="万达国际影院		"+trueMessage[i].hallId+"号厅";
+					 a.innerHTML="选座";
+					 address.innerHTML=trueMessage[i].startTime;
+					 rmb.innerHTML="￥";
+					 stonefont.innerHTML=trueMessage[i].price;
+					 li.appendChild(cinemaName);
+					 li.appendChild(address);
+					 p.appendChild(rmb);
+					 p.appendChild(stonefont);
+					 p.appendChild(start);
+					 priceBox.appendChild(p);
+					 priceBox.appendChild(a);
+					 li.appendChild(priceBox);
+					 messageHouse.appendChild(li);
+
+
+				}
+			}
+			else{
+				alert("还没有添加演出计划");
+			}
+			
+
+			
+		}
+	}
+	console.log(getParam("movieId"));
+	xmlhttp.open("GET","/TTMS/schedule/getSchedules/"+getParam("movieId"),true);
+	xmlhttp.send();
+ }
+
+
+
+    
+</script>

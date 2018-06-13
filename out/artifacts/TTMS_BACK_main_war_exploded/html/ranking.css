@@ -1,0 +1,141 @@
+*{
+  padding:0;
+  margin:0;
+}
+li{
+      list-style: none;
+    }
+#nav{
+   width:100%;
+   height:80px;
+   border-bottom:1px solid #d8d8d8;
+   background-color:white;
+   overflow: hidden;
+ }
+  #nav ul{
+  float:left;
+  width:60%;
+  height:100%;
+
+ }
+ #tuBiao{
+    float:left;
+    display:block;
+    margin:10px 0 0 50px;
+ }
+   #nav ul li{
+    margin-left:30px;
+    width:80px;
+    float:left;
+    list-style:none;
+ }
+  #nav ul li p{
+   text-align:center;
+   height:80px;
+   line-height:80px;
+   font-size:18px;
+   color:black;
+ }
+ a {
+    text-decoraction: none;
+}
+  #nav ul li p:hover{
+   color: #fff;
+    background-color: #ef4238;
+ }
+
+/*公众的*/
+	  #content{
+	  	width:75%;
+	  	margin:20px auto;
+	  }
+
+   .sale{
+   	  margin:20px 0;
+   	  overflow: hidden;
+   }
+   .img{
+      float:left;
+      width: 160px;
+      height:220px;
+   }
+   .movieMessage{
+      float:right;
+      width:700px;
+      height:220px;
+      border-bottom:1px solid #E5E5E5;
+      overflow: hidden;
+
+   }
+   .order{
+      float:left;
+      margin:80px 30px 0 0;
+      width:50px;
+      height:50px;
+      background-color:#ffb400;
+      line-height: 50px;
+      text-align: center;
+      font-size: 18px;
+      color: #999;
+      font-weight: 700;
+   }
+   .movie_name{
+      margin-top:50px;
+      font-size: 26px;
+      color: #333;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      width: 420px;
+      display: block;
+   }
+   .movie_actor{
+      margin-top: 18px;
+      width:500px;
+      color: #333;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+   }
+   .movie_time{
+       margin-top: 8px;
+       color: #999;
+       width:420px;
+   }
+   .ticketBox{
+       float:right;
+       margin:-60px 30px 0 0;
+   }
+   .ticket {
+      color:#ffb400;
+      font-size:50px;
+      font-weight:bold;
+      font-style:italic;
+   }
+   .smallTicket{
+      margin-top:20px;
+      float:right;
+      color:#ffb400;
+      font-size:30px;
+      font-weight:bold;
+   }
+
+/*页尾
+*/   #footer{
+    width:100%;
+    background-color: #262426;
+    padding: 56px 0;
+    margin: 0 auto;
+    margin-top: 82px;
+ }
+ #footer span{
+   color:#ef4238;
+ }
+ #footer p{
+    margin:10px 0;
+    color:#E9E9E9;
+    text-align:center;
+    text-align: center;
+    font-size: 14px;
+    line-height: 20px;
+ }
