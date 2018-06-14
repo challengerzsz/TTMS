@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="Access-Control-Allow-Origin" content="http://120.79.196.225">
+	<title>注册</title>
+	<script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+	<script src="materialize-v0.97.8/materialize/js/materialize.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="materialize-v0.97.8/materialize/css/materialize.min.css">
+  <link rel="stylesheet" type="text/css" href="css/manageSign.css">
+</head>
+<body>
+       <img src="image/biaoyu.png" id="biaoyu"  width="600px" />
+ 	<div class="row">
+		<!--  <form class="col s12"> -->
+		      <div class="row">
+		             <div class="input-field col s12">
+			          <i class="material-icons prefix"><img src="image/person.png" width="34px"  /></i>
+			          <input id="icon_prefix" type="text" class="validate  username" name="username" placeholder="用户名"/>
+			        </div>
+			        <div class="input-field col s12">
+			          <i class="material-icons prefix"><img src="image/person.png" width="34px"  /></i>
+			          <input id="icon_prefix" type="text" class="validate  realName" name="realName" placeholder="姓名" />
+			        </div>
+			        <div class="input-field col s12">
+			          <i class="material-icons prefix"><img src="image/mi.png" width="34px"  /></i>
+			          <input id="icon_telephone" type="password" class="validate  password" name="password" placeholder="密码" />
+			        </div>
+			        <div class="input-field col s12">
+			          <i class="material-icons prefix"><img src="image/phone.png"  width="34px" /></i>
+			          <input id="icon_telephone" type="text" class="validate  phone" name="phone" placeholder="电话号码" />
+			        </div>
+			        <div class="input-field col s12">
+			          <i class="material-icons prefix"><img src="image/email.png" width="34px" /></i>
+			          <input id="icon_telephone" type="text" class="validate   email" name="email" placeholder="邮箱" />
+			        </div>
+			        <div class="input-field col s12">
+			          <i class="material-icons prefix"><img src="image/address.png"  width="34px"/></i>
+			          <input id="icon_telephone" type="text" class="validate   address" name="address" placeholder="地址" />
+			        </div>
+			        <div class="input-field col s12" style="margin-bottom:10px;">
+				        <p style="width:30%;float:left;margin-left:25px;margin-top:-5px;">
+					      <input name="group1" type="radio" id="test1" />
+					      <label for="test1">售票员</label>
+					    </p>
+					    <p style="width:30%;float:left;margin-left:40px;margin-top:-5px;">
+					      <input name="group1" type="radio" id="test2" />
+					      <label for="test2">经理</label>
+					    </p>
+					</div>
+		            <button class="btn waves-effect waves-light" id="sign"  >欢迎加入</button>
+		  </div>
+		 <!--  </form> -->
+	</div>
+  </div>
+</body>
+</html>
+<script type="text/javascript">
+window.onload=function(){
+	var signBtn = document.getElementById('sign');
+	signBtn.onclick=function(){
+		sign();
+	}
+}
+function sign()
+ {
+	var xmlhttp;
+	if (window.XMLHttpRequest)
+	{
+		//  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+		xmlhttp=new XMLHttpRequest();
+	}
+	else
+	{
+		// IE6, IE5 浏览器执行代码
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	xmlhttp.onreadystatechange=function()
+	{
+		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		{
+
+			 var personInformation=JSON.parse(xmlhttp.responseText);
+			 if(personInformation.status=="1")
+			 {
+			 	alert("注册成功");
+			 	window.open("guanli.html","_self");
+			 }
+			 else{
+			 	alert("注册失败");
+			 }
+			
+		}
+	}
+	var name = document.getElementsByClassName('username')[0].value;
+	var realName = document.getElementsByClassName("realName")[0].value;
+	var password = document.getElementsByClassName("password")[0].value;
+	var phone = document.getElementsByClassName("phone")[0].value;
+	var email = document.getElementsByClassName("email")[0].value;
+	var address = document.getElementsByClassName("address")[0].value;
+	var type = ""+document.getElementById("test1").checked?1:2;
+	var signMessage ={
+		"username":name,
+		"realName":realName,
+		"password":password,
+		"type":type,
+		"email":email,
+		"phone":phone,
+		"address":address
+	}
+	xmlhttp.open("POST","/TTMS/users/register",true);
+	xmlhttp.setRequestHeader("Content-type","application/json");
+	xmlhttp.setRequestHeader("Access-Control-Allow-Origin","*");
+	xmlhttp.send(JSON.stringify(signMessage));
+ }
+</script>

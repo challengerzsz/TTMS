@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<title>个人信息页面</title>
+	<link rel="stylesheet" type="text/css" href="css/common.css" />
+	<link rel="stylesheet" type="text/css" href="css/person.css" />
+	<script type="text/javascript" src="js/cookie.js"></script>
+	<style type="text/css">
+	    #personOrder{
+	    	height:460px;
+	    	overflow: auto;
+	    }
+	    #personOrder li{
+	    	width:90%;
+	    	height:160px;
+	    	margin:10px auto;
+	    	border-bottom: 1px dashed #e5e5e5;
+	    }
+	    #personOrder li p{
+	    	margin:8px 0;
+	    	overflow: hidden;
+	    }
+	    #personOrder li div{
+	    	float:right;
+	    	width:82%;
+	    }
+	    .movieName{
+	    	font-size:20px;
+	    }
+		#personOrder img{
+			display: block;
+			float:left;
+			width:100px;
+			height:150px;
+		}
+		.rmb{
+			color: #f03d37;
+			font-size: 12px;
+		}
+		.price{
+			font-size: 16px;
+            font-weight: 700;
+            color: #f03d37;
+		}
+		.row,.col,.time{
+			font-size: 16px;
+			 color: #999;
+			 display: inline-block;
+			 margin-left:5px;
+
+		}
+		.cancel{
+			float:right;
+			text-align: right;
+			display: inline-block;
+			width: 15%;
+			height: 30px;
+			color: #fff;
+			background-color: #f03d37;
+			font-size: 14px;
+			line-height: 30px;
+			border-radius: 100px;
+			text-align: center;
+			box-shadow: 0 2px 10px -2px #f03d37;
+		}
+		.cancel:hover{
+			outline-width: 0;
+		}
+	</style>
+</head>
+<body>
+	<div id="nav">
+          <img src="image/小仙女.png"  alt="图标"  width="200px" id="tuBiao"/>
+          <ul>
+              <li>
+                  <a href="index.html"><p>首页</p></a>
+              </li>
+              <li>
+                <a href=""><p>电影</p></a>
+              </li>
+              <li>
+                <a href=""><p>影院</p></a>
+              </li>
+              <li>
+                <a href="ranking.html"><p>榜单</p></a>
+              </li>
+              <li>
+                <a href=""><p>热点</p></a>
+              </li>
+           </ul>
+       </div>
+
+
+       <!-- 这里就是信息展示 -->
+       <div id="orders-container">
+       	   <div id="user-profile-nav">
+       	   	   <h1>个人中心</h1>
+       	   	   <p class="orders" style="border-top:1px solid white;">我的订单</p>
+       	   	   <p class="orders">基本信息</p>
+       	   </div>
+       	   <ul id="content">
+       	   	    <li class="contentMessage" style="display: block;">
+       	   	    	<p class="profile-title">我的订单</p>
+					<ul id="personOrder">
+						<!--<li>-->
+							<!--<img src="http://p1.meituan.net/movie/3d17aa5ee07f5d66239d8393bcb8fe5196556.jpg@160w_220h_1e_1c">-->
+							<!--<div>-->
+								<!--<h3 class="movieName">111</h3>-->
+								<!--&lt;!&ndash; <p><span>时长</span><span class="dur">111111</span><span>分钟</span></p> &ndash;&gt;-->
+								<!--<p>-->
+								      <!--<span>座位</span>-->
+								      <!--<span class="row">111</span>-->
+								      <!--<span>行</span>-->
+								      <!--<span class="col">1111</span>-->
+								      <!--<span>列</span>-->
+								<!--</p>-->
+								<!--<p>-->
+								     <!--<span>时间</span>-->
+								     <!--<span class="time">22分钟</span>-->
+								<!--</p>-->
+								<!--<p>-->
+								      <!--<span class="rmb">￥</span>-->
+								      <!--<span class="price">24.5</span>-->
+								<!--</p>-->
+								<!--<button class="cancel">退票</button>-->
+							<!--</div>-->
+						<!--</li>-->
+					</ul>
+       	   	    </li>
+       	   	    <li class="contentMessage">
+       	   	    	<p class="profile-title">基本信息</p>
+       	   	    	<div id="user">
+       	   	    	   <img src="" alt="个人头像" id="img"  />
+       	   	    	   <div id="userInformation">
+       	   	    	   	   <p>
+       	   	    			    <span class="messageJian">用户名</span><span class="messageValue">11111111</span>
+	       	   	    		</p>
+	       	   	    		<p>
+	       	   	    			<span class="messageJian">真实姓名</span><span class="messageValue">1111111</span>
+	       	   	    		</p>
+	       	   	    		<p>
+	       	   	    			<span class="messageJian">email</span><span class="messageValue">111111</span>
+	       	   	    		</p>
+	       	   	    		<p>
+	       	   	    			<span class="messageJian">phone</span><span class="messageValue">18802935276</span>
+	       	   	    		</p>
+	       	   	    		<p>
+	       	   	    			<span class="messageJian">address</span><span class="messageValue">11111</span>
+	       	   	    		</p>
+       	   	    	   </div>
+
+       	   	    	</div>
+       	   	    </li>
+       	   </ul>
+       </div>
+
+
+           <!--  页尾 -->
+	   <div style="clear:both;"></div>
+	    <div id="footer">
+	          <p>违法和不良信息举报电话: 4006018900 举报邮箱: jubao.maoyan@maoyan.com</p>
+	          <p>友情链接 : <span>美团网</span>  <span>美团下载</span></p>
+	          <p>©2016 猫眼电影 maoyan.com 京ICP证160733号 京ICP备16022489号-1 京公网安备 11010502030881号 网络文化经营许可证 电子公告服务规则<p>
+	          <p>北京猫眼文化传媒有限公司</p>
+	   </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+	window.onload=function() {
+        choice(".orders", ".contentMessage");
+
+        var userId = getParam("id");
+        // alert(userId);
+        personOrder();
+        userInformation();
+
+
+        //获取其中的参数
+        function getParam(name) {
+            var search = document.location.search;
+            //alert(search);
+            var pattern = new RegExp("[?&]" + name + "\=([^&]+)", "g");
+            var matcher = pattern.exec(search);
+            var items = null;
+            if (null != matcher) {
+                try {
+                    items = decodeURIComponent(decodeURIComponent(matcher[1]));
+                } catch (e) {
+                    try {
+                        items = decodeURIComponent(matcher[1]);
+                    } catch (e) {
+                        items = matcher[1];
+                    }
+                }
+            }
+            return items;
+        };
+
+//这里实现的是其中的用户的信息获取
+        function userInformation() {
+            var xmlhttp;
+            if (window.XMLHttpRequest) xmlhttp = new XMLHttpRequest();
+            else xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    var message = JSON.parse(xmlhttp.responseText);
+                    var img = document.getElementById("img");
+                    if (message.status == "1") {
+                        var messageValue = document.querySelectorAll(".messageValue");
+                        messageValue[0].innerHTML = message.data.username;
+                        messageValue[1].innerHTML = message.data.realName;
+                        messageValue[2].innerHTML = message.data.email;
+                        messageValue[3].innerHTML = message.data.phone;
+                        messageValue[4].innerHTML = message.data.address;
+                        img.setAttribute("src", message.data.img);
+                    }
+                    else {
+                        window.open("login.html", "_self");
+                    }
+
+                }
+            }
+            xmlhttp.open("GET", "/TTMS/users/getMyInfo", true);
+            xmlhttp.send();
+        }
+
+
+        //这个是获取其中的电影的信息的
+        function getMovieName(obj, obj1) {
+            var xmlhttp;
+
+
+            if (window.XMLHttpRequest) {
+                xmlhttp = new XMLHttpRequest();
+            } else {
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange = function () {
+
+
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    var message = JSON.parse(xmlhttp.responseText);
+
+
+                    if (message.status == "1") {
+
+
+                        var trueMessage = message.data;
+
+                        var information = {
+                            "img":trueMessage.img,
+                            "h3":trueMessage.nm
+                        }
+
+
+                        var li = document.createElement("li");
+
+                        var div = document.createElement("div");
+
+                        var img = document.createElement("img");
+                        img.setAttribute("src", information.img);
+
+                        var h3 = document.createElement("h3");
+                        h3.className = "movieName";
+                        h3.innerHTML = information.h3;
+
+
+
+                        var seat = document.createElement("p");
+                        var zuo = document.createElement("span");
+                        zuo.innerHTML = "座位";
+                        var row = document.createElement("span");
+                        row.innerHTML = obj1.seatRow;
+                        row.className = "row";
+                        var col = document.createElement("span");
+                        col.innerHTML = obj1.seatColumn;
+                        col.className = "col";
+                        var hang = document.createElement("span");
+                        hang.innerHTML = "行";
+                        var lie = document.createElement("span");
+                        lie.innerHTML = "列";
+                        seat.appendChild(zuo);
+                        seat.appendChild(row);
+                        seat.appendChild(hang);
+                        seat.appendChild(col);
+                        seat.appendChild(lie);
+
+                        var startTimt = document.createElement("p");
+                        var hour = document.createElement("span");
+                        hour.innerHTML = "时间";
+                        var time = document.createElement("span");
+                        time.innerHTML = obj1.startTime;
+                        startTimt.appendChild(hour);
+                        startTimt.appendChild(time);
+
+                        var money = document.createElement("p");
+                        var rmb = document.createElement("span");
+                        rmb.className = "rmb";
+                        rmb.innerHTML = "¥";
+                        var price = document.createElement("span");
+                        price.innerHTML = obj1.ticketPrice;
+                        money.appendChild(rmb);
+                        money.appendChild(price);
+
+
+                        var button = document.createElement("button");
+                        button.innerHTML = "退票";
+                        button.id = obj1.id;
+                        button.className = "cancel";
+
+
+                        div.appendChild(h3);
+                        div.appendChild(seat);
+                        div.appendChild(startTimt);
+                        div.appendChild(money);
+                        div.appendChild(button);
+
+                        li.appendChild(img);
+                        li.appendChild(div);
+
+
+                        document.getElementById("personOrder").appendChild(li);
+
+                        //这里是调用其中的退票的函数的
+                        cancel();
+
+                    }
+                }
+            }
+            xmlhttp.open("GET","/TTMS/movies/"+obj,true);
+            xmlhttp.send();
+        };
+
+//这里是获取其中的个人订单信息的
+        function personOrder() {
+            var xmlhttp;
+            if (window.XMLHttpRequest) xmlhttp = new XMLHttpRequest();
+            else xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    var message = JSON.parse(xmlhttp.responseText);
+                    if (message.status == "1") {
+                        var trueMessage = message.data;
+
+                        for (var i = trueMessage.length - 1; i >= 0; i--) {
+                            var movieId = trueMessage[i].movieId;
+                            getMovieName(movieId, trueMessage[i]);
+                        }
+
+                    }
+
+
+                }
+            }
+            xmlhttp.open("GET", "/TTMS/ticket/myTickets/" + userId, true);
+            xmlhttp.send();
+        }
+
+
+//这里是退票的交互
+        function cancel() {
+            var cancel = document.querySelectorAll(".cancel");
+            for (var i = cancel.length - 1; i >= 0; i--) {
+                cancel[i].onclick = function () {
+                    var id = this.id;
+                    var xmlhttp;
+                    if (window.XMLHttpRequest) xmlhttp = new XMLHttpRequest();
+                    else xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                    xmlhttp.onreadystatechange = function () {
+                        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                            var message = JSON.parse(xmlhttp.responseText);
+                            if (message.status == "1") {
+                                alert("退票成功");
+                            }
+                            else {
+                                alert("退票失败");
+                            }
+
+
+                        }
+                    }
+                    this.innerHTML = "已退票";
+                    var message = {
+                        "returnTicketsId": [id]
+                    }
+                    xmlhttp.open("POST", "/TTMS/ticket/return", true);
+                    xmlhttp.setRequestHeader("Content-type", "application/json");
+                    xmlhttp.send(JSON.stringify(message));
+                }
+            }
+        }
+
+
+    };
+
+
+	    function  choice(obj1,obj2) {
+            var choice = document.querySelectorAll(obj1);
+            var contentBox = document.querySelectorAll(obj2);
+            for (var i = choice.length - 1; i >= 0; i--) {
+                choice[i].index = i;
+                choice[i].onclick = function () {
+                    for (var j = contentBox.length - 1; j >= 0; j--) {
+                        contentBox[j].style.display = "none";
+                    }
+                    contentBox[this.index].style.display = "block";
+                }
+            }
+
+        }
+</script>

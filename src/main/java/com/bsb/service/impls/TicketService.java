@@ -127,6 +127,9 @@ public class TicketService implements ITicketService {
     public ServerResponse<String> returnTickets(User user, Map<String,List<Integer>> returnTicketsJson) {
 
         ArrayList<Integer> ticketsIds = (ArrayList<Integer>) returnTicketsJson.get("returnTicketsId");
+        for (Integer integer : ticketsIds) {
+            logger.info(integer);
+        }
         if (ticketsIds == null) {
             return ServerResponse.createByErrorMsg("票务信息为空，退票失败");
         }

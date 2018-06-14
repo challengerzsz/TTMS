@@ -1,0 +1,50 @@
+#form{
+			position: absolute; top:0; right:0; left:0; bottom:0;
+			margin:auto;
+			padding:20px 5px 0 20px;
+			width:300px;
+			height:400px;
+			background-color:#323C48;
+			display: none;
+			border-radius: 10px;
+		}
+		#form p{
+             width:85%;
+             margin:10px auto;
+             overflow: hidden;
+             color: white;
+		}
+		.left{
+			display: block;
+			float: left;
+			width:37%;
+			height:30px;
+			line-height: 30px;
+			font-size: 13px;
+			text-align: left;
+		}
+		.right{
+			display: block;
+			float: right;
+			width:55%;
+			height:30px;
+			text-align: left;
+		}
+		#solve{
+			display: block;
+			width:85%;
+			height: 30px;
+			margin:20px auto;
+			border-radius: 5px;
+		}
+
+
+		#movieName{
+			font-size: 15px;
+			margin:20px 0 20px 30px;
+			padding:5px;
+			color: #333;
+			border-left: 4px solid #0099CB;
+			padding-left: 6px;
+			line-height: 18px;
+		}

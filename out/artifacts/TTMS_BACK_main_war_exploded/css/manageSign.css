@@ -1,0 +1,26 @@
+*{
+        	padding:0;
+        	margin:0;
+        }
+        li{
+        	list-style: none;
+        }
+		.row{
+			position: relative;
+			position: fixed;  top:3%; right:17%;
+			padding:20px;
+			width:350px;
+			height:630px;
+			background-color: white;
+			border-radius: 20px;
+			box-shadow: 3px 3px 2px 4px #CCCCFF;
+		}
+		
+		#sign{
+			position: absolute;bottom:4%; left:40px;
+			width:80%;
+		}
+
+		#biaoyu{
+			position: absolute; top:16%;left: 5%;
+		}
