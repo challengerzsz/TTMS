@@ -142,6 +142,14 @@ end;
 $$
 delimiter ;
 
+delimiter $$
+create trigger delete_analysis_trigger after delete
+on ticket_table for each row begin
+update analysis_table set sold = sold - old.ticketPrice where userId = old.sellerId;
+end;
+$$
+delimiter ;
+
 
 -- 打开事件线程
 SET GLOBAL event_scheduler=1;

@@ -104,7 +104,7 @@
           <img src="image/小仙女.png"  alt="图标"  width="200px" id="tuBiao"/>
           <ul>
               <li>
-                  <a href="index.html"><p>首页</p></a>
+                  <a href="index.html" id="home"><p>首页</p></a>
               </li>
               <li>
                 <a href=""><p>电影</p></a>
@@ -113,7 +113,7 @@
                 <a href=""><p>影院</p></a>
               </li>
               <li>
-                <a href="ranking.html"><p>榜单</p></a>
+                <a href="ranking.html" id="ranking"><p>榜单</p></a>
               </li>
               <li>
                 <a href=""><p>热点</p></a>
@@ -194,14 +194,17 @@
 <script type="text/javascript">
     window.onload=function() {
         choice(".orders", ".contentMessage");
-        var userId = getParam("id");
-        // alert(userId);
-       personOrder();
-        userInformation();
 
         var link = document.getElementById("link");
+        var home = document.getElementById("home");
+        var ranking = document.getElementById("ranking");
         var id = getParam("id");
         link.setAttribute("href","person.html?id="+id);
+        home.setAttribute("href","index.html?id="+id);
+        ranking.setAttribute("href","ranking.html?id="+id);
+
+        personOrder();
+        userInformation();
 
         //获取其中的参数
         function getParam(name) {
@@ -342,7 +345,8 @@
                 }
             }
             // alert("userId = " + userId);
-            xmlhttp.open("GET", "/TTMS/ticket/myTickets/" + userId, true);
+            // alert(id);
+            xmlhttp.open("GET", "/TTMS/ticket/myTickets/" +id, true);
             xmlhttp.send();
         }
 //这里是退票的交互

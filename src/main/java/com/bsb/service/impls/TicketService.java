@@ -46,7 +46,7 @@ public class TicketService implements ITicketService {
 
     @Transactional(rollbackFor=Exception.class)
     @Override
-    public ServerResponse<String> buyTicket(ArrayList<Seat> seats, User user) {
+    public synchronized ServerResponse<String> buyTicket(ArrayList<Seat> seats, User user) {
 
         Schedule schedule = scheduleMapper.getScheduleById(seats.get(0).getScheduleId());
         if (schedule == null) {
@@ -92,7 +92,7 @@ public class TicketService implements ITicketService {
 
     @Transactional(rollbackFor=Exception.class)
     @Override
-    public ServerResponse<String> sellTickets(User user, ArrayList<Seat> seats) {
+    public synchronized ServerResponse<String> sellTickets(User user, ArrayList<Seat> seats) {
 
         Schedule schedule = scheduleMapper.getScheduleById(seats.get(0).getScheduleId());
         if (schedule == null) {

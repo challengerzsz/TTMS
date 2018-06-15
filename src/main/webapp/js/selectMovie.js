@@ -1,4 +1,4 @@
- function show()
+ function show(id)
   {
 	var xmlhttp;
 	if (window.XMLHttpRequest)
@@ -21,7 +21,7 @@
 					var ying = document.getElementById('ying');
 					for (var i = 0; i < message.data.length; i++) {
 						var a = document.createElement("a");
-						a.setAttribute("href","performance.html?movieId="+message.data[i].id);
+						a.setAttribute("href","performance.html?movieId="+message.data[i].id+"&id="+id);
 						var li = document.createElement("li");
 						var div = document.createElement("div");
 						var p1 = document.createElement("p");

@@ -14,16 +14,13 @@
                   <a href="index.html"><p>首页</p></a>
               </li>
               <li>
-                <a href=""><p>电影</p></a>
+                <a href="" id="home"><p>电影</p></a>
               </li>
               <li>
                 <a href=""><p>影院</p></a>
               </li>
               <li>
-                <a href=""><p>榜单</p></a>
-              </li>
-              <li>
-                <a href="ranking.html"><p>榜单</p></a>
+                <a href="ranking.html" id="ranking"><p>榜单</p></a>
               </li>
               <li>
                 <a href="person.html" id="link"><p>个人中心</p></a>
@@ -203,8 +200,12 @@
   window.onload=function(){
 
       var link = document.getElementById("link");
+      var home = document.getElementById("home");
+      var ranking = document.getElementById("ranking");
       var id = getParam("id");
       link.setAttribute("href","person.html?id="+id);
+      home.setAttribute("href","index.html?id="+id);
+      ranking.setAttribute("href","ranking.html?id="+id);
 
    
     //这里显示的是其中选的座位的数量

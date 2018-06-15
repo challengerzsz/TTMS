@@ -12,7 +12,7 @@
           <img src="image/小仙女.png"  alt="图标"  width="200px" id="tuBiao"/>
           <ul>
               <li>
-                  <a href="index.html"><p>首页</p></a>
+                  <a href="index.html" id="home"><p>首页</p></a>
               </li>
               <li>
                 <a href=""><p>电影</p></a>
@@ -21,7 +21,7 @@
                 <a href=""><p>影院</p></a>
               </li>
               <li>
-               <a href="ranking.html"><p>榜单</p></a>
+               <a href="ranking.html" id="ranking"><p>榜单</p></a>
               </li>
               <li>
                 <a href=""><p>热点</p></a>
@@ -110,9 +110,16 @@
 <script type="text/javascript">
 	sale();
 	plan();
+
+
+
     var link = document.getElementById("link");
+    var home = document.getElementById("home");
+    var ranking = document.getElementById("ranking");
     var id = getParam("id");
     link.setAttribute("href","person.html?id="+id);
+    home.setAttribute("href","index.html?id="+id);
+    ranking.setAttribute("href","ranking.html?id="+id);
     //获取其中的id
     function  getParam(name) {
         var search = document.location.search;
@@ -238,10 +245,10 @@
 					 var a = document.createElement("a");
 					 var useType = localStorage.getItem("type");
 					 if(useType==0){
-                         a.setAttribute("href","sale.html?scheduleId="+trueMessage[i].id+"&movieId="+movieId);
+                         a.setAttribute("href","sale.html?scheduleId="+trueMessage[i].id+"&movieId="+movieId+"&id="+id);
 					 }
 					if(useType==1){
-                        a.setAttribute("href","shellSold.html?scheduleId="+trueMessage[i].id+"&movieId="+movieId);
+                        a.setAttribute("href","shellSold.html?scheduleId="+trueMessage[i].id+"&movieId="+movieId+"&id="+id);
 					}
 					 cinemaName.innerHTML="小仙女	"+trueMessage[i].hallId+"号厅";
 					 a.innerHTML="选座";
