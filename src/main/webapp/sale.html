@@ -25,9 +25,12 @@
               <li>
                 <a href="ranking.html"><p>榜单</p></a>
               </li>
+              <li>
+                <a href="person.html" id="link"><p>个人中心</p></a>
+              </li>
            </ul>
         </div>
-  <div id="box">
+   <div id="box">
     <div class="conten">
       <div class="list">
         <span><img src="image/white.png" align="middle" width="30px"> 可选座位</span>
@@ -198,6 +201,11 @@
 </html>
 <script type="text/javascript">
   window.onload=function(){
+
+      var link = document.getElementById("link");
+      var id = getParam("id");
+      link.setAttribute("href","person.html?id="+id);
+
    
     //这里显示的是其中选的座位的数量
     var num=0;
@@ -206,15 +214,12 @@
     var message = document.getElementById("message");
     var number = document.getElementById("num");
     var buy = document.getElementById("buy");
-
     // //这里是显得是对应的其中的修改其中的修改状态的
     var seat = document.getElementById('seat').getElementsByTagName('img');
     for (var i = seat.length - 1; i >= 0; i--) {
       seat[i].seatBtn=true;
       seat[i].buy=false;
     }
-
-
      //这里是其中的演出计划的id的
     var scheduleId =parseInt(getParam("scheduleId"));
     
@@ -223,14 +228,8 @@
      beginning();
      show();
      showPrice();
-
     
-
-
-
-
     //这里实现的就是其中的传递数据的
-
     buy.onclick=function(){
             var information = message.getElementsByTagName("p");
             var data=[];
@@ -245,13 +244,11 @@
                  col = text.substring(2,3);
               }
               var row = text.substring(0,1);
-
               var seatInformation ={
                   "scheduleId":scheduleId,
                   "row":row,
                   "column":col
               }
-
               data.push(seatInformation);
               
             }
@@ -260,8 +257,6 @@
             }
            loadXMLDoc(seatInformation);
     }
-
-
  
  //获取其中的url里面的值的
  function  getParam(name) {
@@ -283,9 +278,6 @@
         }
         return items;
   };
-
-
-
     function beginning()
   {
     var xmlhttp;
@@ -317,10 +309,7 @@
     xmlhttp.open("GET","/TTMS/ticket/"+scheduleId,true);
     xmlhttp.send(null);
   }
-
-
   
-
    //这个是对应的增加其中的信息
   function inform(i,parent){
     var row;
@@ -342,9 +331,6 @@
         p.style.borderRadius="5px";
         parent.appendChild(p);
   }
-
-
-
   //这里实现的其中的删除的信息
   function deleteMessage(i,parent)
   { 
@@ -373,9 +359,7 @@
                parent.removeChild(information[i]);
       }
     }
-
   }
-
   function communication(){
       for (var i = 0; i <=seat.length - 1; i++) {
           seat[i].index=i;
@@ -406,40 +390,37 @@
           }
       }
   }
-
-
   //这里实现的是其中的传递数据的
-  function loadXMLDoc(obj)
-  {
-    var xmlhttp;
-    if (window.XMLHttpRequest)   xmlhttp=new XMLHttpRequest();
-    else                         xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-    xmlhttp.onreadystatechange=function()
-    {
-      if (xmlhttp.readyState==4 && xmlhttp.status==200)
+      function loadXMLDoc(obj)
       {
-        console.log(xmlhttp.responseText);
-         var message = JSON.parse(xmlhttp.responseText);
-         if(message.status=="1")
-         {
-           alert("恭喜你买票成功");
-         }
-         else
-         {
-          window.open("login.html","_self");
-         }
+          var xmlhttp;
+          if (window.XMLHttpRequest)   xmlhttp=new XMLHttpRequest();
+          else                         xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+          xmlhttp.onreadystatechange=function()
+          {
+              if (xmlhttp.readyState==4 && xmlhttp.status==200)
+              {
+                  console.log(xmlhttp.responseText);
+                  var message = JSON.parse(xmlhttp.responseText);
+                  if(message.status=="0")
+                  {
+                      window.open("login.html","_self");
+                  }
+                  else if(message.status=="1")
+                  {
+                      alert("购票成功");
+                  }
+                  else  if(message.status=="3")
+                  {
+                      alert("选座已被售");
+                  }
+              }
+          }
+          xmlhttp.open("POST","/TTMS/ticket/buy",true);
+          xmlhttp.setRequestHeader("Content-type","application/json");
+          xmlhttp.send(JSON.stringify(obj));
       }
-    }
-    xmlhttp.open("POST","/TTMS/ticket/buy",true);
-    xmlhttp.setRequestHeader("Content-type","application/json");
-    xmlhttp.send(JSON.stringify(obj));
-  }
-
-
-
-
 //这里实现的是其中的电影的信息的展示
-
   function show()
 {
   var xmlhttp;
@@ -469,18 +450,12 @@
       else{
         alert("后台还没有添加对应的影片信息");
       }
-
-
     }
   }
   xmlhttp.open("GET","/TTMS/movies/"+getParam("movieId"),true);
   xmlhttp.send();
 }
-
-
-
 //展示其中的价格的
-
  function showPrice()
 {
   var xmlhttp;
@@ -499,21 +474,10 @@
       else{
         alert("出错啦!");
       }
-
-
     }
   }
   xmlhttp.open("GET","/TTMS/schedule/getSchedule/"+scheduleId,true);
   xmlhttp.send();
 }
-
-
 };
-
-
-
-
-
-
-
 </script>

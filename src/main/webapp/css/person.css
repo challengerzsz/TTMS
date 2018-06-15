@@ -82,13 +82,15 @@
 		}
 		#userInformation{
 			width: 50%;
-			float:right;
 			margin-right:10%;
+		}
+		#userInformation p{
+			margin:10px 0;
 		}
 		.messageJian{
           float:left;
           display: block;
-          width:75px;
+          width:150px;
           text-align: right;
           height:30px;
           line-height: 30px;
@@ -97,8 +99,10 @@
           float:right;
           margin:0px 40px ;
           display: block;
-          width:110px;
+          width:130px;
           height:30px;
-          text-align: left;
+          text-align: center;
           line-height: 30px;
+           background-color: #F2F2F2;
+          border-radius: 3px;
 		}

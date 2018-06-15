@@ -22,6 +22,9 @@
         <li>
             <a href="ranking.html"><p>榜单</p></a>
         </li>
+        <li>
+            <a href="person.html" id="link"><p>个人中心</p></a>
+        </li>
     </ul>
 </div>
 <div id="box">
@@ -259,6 +262,9 @@
         }
 
 
+        var link = document.getElementById("link");
+        var id = getParam("id");
+        link.setAttribute("href","person.html?id="+id);
 
         //获取其中的url里面的值的
         function  getParam(name) {
@@ -415,9 +421,20 @@
             {
                 if (xmlhttp.readyState==4 && xmlhttp.status==200)
                 {
-
-                        alert("恭喜你买票成功");
-
+                    console.log(xmlhttp.responseText);
+                    var message = JSON.parse(xmlhttp.responseText);
+                    if(message.status=="0")
+                    {
+                        window.open("login.html","_self");
+                    }
+                    else if(message.status=="1")
+                    {
+                        alert("售票成功");
+                    }
+                    else  if(message.status=="3")
+                    {
+                        alert("选座已被售");
+                    }
                 }
             }
             xmlhttp.open("POST","/TTMS/ticket/sell",true);

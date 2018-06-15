@@ -40,7 +40,8 @@
 			        </div>
 			        <div class="input-field col s12" style="margin-bottom:10px;">
 				        <p style="width:30%;float:left;margin-left:25px;margin-top:-5px;">
-					      <input name="group1" type="radio" id="test1" />
+					      <input name="group1" type="radio"
+								 class="userType" id="test1" />
 					      <label for="test1">售票员</label>
 					    </p>
 					    <p style="width:30%;float:left;margin-left:40px;margin-top:-5px;">
@@ -98,8 +99,8 @@ function sign()
 	var phone = document.getElementsByClassName("phone")[0].value;
 	var email = document.getElementsByClassName("email")[0].value;
 	var address = document.getElementsByClassName("address")[0].value;
-	var type = ""+document.getElementById("test1").checked?1:2;
-	var signMessage ={
+	var type = document.querySelectorAll(".userType")[0].checked?1:2;
+	 var signMessage ={
 		"username":name,
 		"realName":realName,
 		"password":password,

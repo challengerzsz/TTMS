@@ -26,19 +26,21 @@
               <li>
                 <a href=""><p>热点</p></a>
               </li>
+              <li>
+                <a href="person.html" id="link"><p>个人中心</p></a>
+              </li>
            </ul>
            <div id="login">
            	   <a href="login.html"><img src="image/login.png"  alt="个人"  width="32px" /></a>
-           	   <div style="clear: both;"></div>
-           	   <a href="" id="link"><p id="userMessage">用户信息</p></a>
            </div>
        </div>
 
      <!--  中间的内容部分 -->
      <div id="LunBo">
-         <img src="http://p0.meituan.net/mmc/039bd9e99555d84008cc46305dfeb99f105211.jpg" />
+         <img src="http://p0.meituan.net/mmc/039bd9e99555d84008cc46305dfeb99f105211.jpg"  id="luoBoImg" />
       </div>
 
+       <div style="clear: both;"></div>
 
      <!--这里是其中的信息展示-->
      <div  id="infrmation">
@@ -84,34 +86,51 @@
 </body>
 </html>
 <script type="text/javascript">
+ window.onload=function(){
          show();
          sale();
-
-   
-var link = document.getElementById("link");
-var id = getParam("id");
-link.setAttribute("href","person.html?id="+id);
-
-    //获取其中的id
-    function  getParam(name) {
-        var search = document.location.search;
-        //alert(search);
-        var pattern = new RegExp("[?&]" + name + "\=([^&]+)", "g");
-        var matcher = pattern.exec(search);
-        var items = null;
-        if (null != matcher) {
-            try {
-                items = decodeURIComponent(decodeURIComponent(matcher[1]));
-            } catch (e) {
-                try {
-                    items = decodeURIComponent(matcher[1]);
-                } catch (e) {
-                    items = matcher[1];
-                }
+         //这里实现的是轮播图
+     var Image=['http://p1.meituan.net/mmc/05200dedfe05e78164106a038517a5f3179251.jpg','http://p0.meituan.net/mmc/039bd9e99555d84008cc46305dfeb99f105211.jpg'];
+    var timer=null;
+    var i=0
+    var lun = document.getElementById("luoBoImg");
+    timer=setInterval(function(){             
+            lun.setAttribute("src",Image[i]);
+            i++;
+            if(i>1){
+               i=0;
             }
-        }
-        return items;
-    };
+    },4000);
+
+
+
+
+ var link = document.getElementById("link");
+ var id = getParam("id");
+ link.setAttribute("href","person.html?id="+id);
+ //获取其中的id
+ function  getParam(name) {
+     var search = document.location.search;
+     //alert(search);
+     var pattern = new RegExp("[?&]" + name + "\=([^&]+)", "g");
+     var matcher = pattern.exec(search);
+     var items = null;
+     if (null != matcher) {
+         try {
+             items = decodeURIComponent(decodeURIComponent(matcher[1]));
+         } catch (e) {
+             try {
+                 items = decodeURIComponent(matcher[1]);
+             } catch (e) {
+                 items = matcher[1];
+             }
+         }
+     }
+     return items;
+ };
+
+
+
 
 //这里是获取其中的票房
  function sale()
@@ -173,5 +192,8 @@ link.setAttribute("href","person.html?id="+id);
 
 
 
+
+
+ };
  
 </script>

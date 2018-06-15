@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<title>排行</title>
 	<link rel="stylesheet" type="text/css" href="css/ranking.css" />
-    <link rel="stylesheet" type="text/css" href="css/common.css" />
+	<link rel="stylesheet" type="text/css" href="css/common.css">
 </head>
 <body>
 
@@ -26,6 +26,9 @@
               </li>
               <li>
                 <a href=""><p>热点</p></a>
+              </li>
+              <li>
+                <a href="person.html" id="link"><p>个人中心</p></a>
               </li>
            </ul>
        </div>
@@ -50,6 +53,32 @@
 <script type="text/javascript">
 	window.onload=function(){
 	loadXMLDoc();
+
+
+	//这里是接受用户id的
+        var link = document.getElementById("link");
+        var id = getParam("id");
+        link.setAttribute("href","person.html?id="+id);
+        //获取其中的id
+        function  getParam(name) {
+            var search = document.location.search;
+            //alert(search);
+            var pattern = new RegExp("[?&]" + name + "\=([^&]+)", "g");
+            var matcher = pattern.exec(search);
+            var items = null;
+            if (null != matcher) {
+                try {
+                    items = decodeURIComponent(decodeURIComponent(matcher[1]));
+                } catch (e) {
+                    try {
+                        items = decodeURIComponent(matcher[1]);
+                    } catch (e) {
+                        items = matcher[1];
+                    }
+                }
+            }
+            return items;
+        };
 	function loadXMLDoc()
  {
 	var xmlhttp;

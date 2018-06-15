@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>登陆</title>
+	<title>登录</title>
 	<script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
 	<script src="materialize-v0.97.8/materialize/js/materialize.min.js"></script>
     <link rel="stylesheet" type="text/css" href="materialize-v0.97.8/materialize/css/materialize.min.css">
@@ -55,7 +55,12 @@
 			            	if(personInformation.data.type=="0")       window.location.href="index.html?id="+personInformation.data.id;
 							else if(personInformation.data.type=="1")  window.location.href="ticketing.html";
 							else if(personInformation.data.type=="2")  window.location.href="guanli.html";
-			            }
+			            } else {
+			                // 你先把这里加一下
+							// 登陆失败在哪儿alert一下
+                            alert("登录失败，请重新登陆")
+							// 但是就是加载这里呀  这是我刚加的  试了一下没用  你先改你的吧
+                        }
 			            
 			          },
 			          error:function(err){

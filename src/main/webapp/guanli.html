@@ -530,7 +530,8 @@ function cancel(){
 function inputChange(){
 	var AddMessage = document.querySelector("#AddMessage");
 	var inputBox = AddMessage.getElementsByTagName('input');
-	for (var i = inputBox.length - 1; i >= 0; i--) {
+	for (var i = inputBox.length - 1; i >= 0; i--)
+	{
 		inputBox[i].onfocus=function()
 		{
               this.style.border="1px solid #EAEDF2";
@@ -861,7 +862,7 @@ function sort()
 					 p2.innerHTML=message.data[i].id;
 					 var td3 = document.createElement("td");
 					 var p3 = document.createElement("p");
-					 p3.innerHTML=message.data[i].username;
+					 p3.innerHTML=message.data[i].userName;
 
                     var td4 = document.createElement("td");
                     var p4 = document.createElement("p");

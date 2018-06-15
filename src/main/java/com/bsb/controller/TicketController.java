@@ -25,6 +25,7 @@ public class TicketController {
     @Autowired
     private ITicketService ticketService;
 
+
     @GetMapping("/{scheduleId}")
     public ServerResponse<List<Ticket>> getTicketsByScheduleId(@PathVariable("scheduleId") int scheduleId) {
         return ticketService.getTicketsByScheduleId(scheduleId);
@@ -90,5 +91,6 @@ public class TicketController {
 
         return ticketService.returnTickets(user, returnTicketsJson);
     }
+
 
 }

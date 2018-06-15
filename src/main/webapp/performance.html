@@ -26,11 +26,14 @@
               <li>
                 <a href=""><p>热点</p></a>
               </li>
+              <li>
+                <a href="person.html" id="link"><p>个人中心</p></a>
+              </li>
            </ul>
        </div>
 
 
-       <!-- 电影信息 -->
+        <!-- 电影信息 -->
        <div class="banner">
        	   <img src="" class="movieImg">
        	   <div class="details">
@@ -105,11 +108,31 @@
 </body>
 </html>
 <script type="text/javascript">
-
 	sale();
 	plan();
-
-
+    var link = document.getElementById("link");
+    var id = getParam("id");
+    link.setAttribute("href","person.html?id="+id);
+    //获取其中的id
+    function  getParam(name) {
+        var search = document.location.search;
+        //alert(search);
+        var pattern = new RegExp("[?&]" + name + "\=([^&]+)", "g");
+        var matcher = pattern.exec(search);
+        var items = null;
+        if (null != matcher) {
+            try {
+                items = decodeURIComponent(decodeURIComponent(matcher[1]));
+            } catch (e) {
+                try {
+                    items = decodeURIComponent(matcher[1]);
+                } catch (e) {
+                    items = matcher[1];
+                }
+            }
+        }
+        return items;
+    };
    function  getParam(name) {
         var search = document.location.search;
         //alert(search);
@@ -129,10 +152,7 @@
         }
         return items;
     };
-
-
    var movieId = getParam("movieId");
-
 	function sale()
  {
 	var xmlhttp;
@@ -171,15 +191,12 @@
 			else{
 				alert("后台还没有添加对应的影片信息");
 			}
-
 			
 		}
 	}
 	xmlhttp.open("GET","/TTMS/movies/"+getParam("movieId"),true);
 	xmlhttp.send();
  }
-
-
  function plan()
  {
 	var xmlhttp;
@@ -226,7 +243,7 @@
 					if(useType==1){
                         a.setAttribute("href","shellSold.html?scheduleId="+trueMessage[i].id+"&movieId="+movieId);
 					}
-					 cinemaName.innerHTML="万达国际影院		"+trueMessage[i].hallId+"号厅";
+					 cinemaName.innerHTML="小仙女	"+trueMessage[i].hallId+"号厅";
 					 a.innerHTML="选座";
 					 address.innerHTML=trueMessage[i].startTime;
 					 rmb.innerHTML="￥";
@@ -240,15 +257,12 @@
 					 priceBox.appendChild(a);
 					 li.appendChild(priceBox);
 					 messageHouse.appendChild(li);
-
-
 				}
 			}
 			else{
 				alert("还没有添加演出计划");
 			}
 			
-
 			
 		}
 	}
@@ -256,8 +270,5 @@
 	xmlhttp.open("GET","/TTMS/schedule/getSchedules/"+getParam("movieId"),true);
 	xmlhttp.send();
  }
-
-
-
     
 </script>
