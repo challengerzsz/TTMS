@@ -25,7 +25,7 @@ public class AnalysisController {
     public ServerResponse<AnalysisData> getAnalysisBySellerId(HttpSession session, @PathVariable("sellerName") String sellerName) {
         User user = (User) session.getAttribute(Const.CURRENT_USER);
         if (user == null || user.getType() != 2) {
-            return ServerResponse.createByErrorMsg("身份信息认证失败，请重新登陆");
+            return ServerResponse.createByErrorMsg("身份信息认证失败，请重新登录");
         }
 
         return analysisService.getAnalysisBySellerId(sellerName);
@@ -36,7 +36,7 @@ public class AnalysisController {
     public ServerResponse<List<AnalysisData>> getAnalysisRank(HttpSession session) {
         User user = (User) session.getAttribute(Const.CURRENT_USER);
         if (user == null || user.getType() != 2) {
-            return ServerResponse.createByErrorMsg("身份信息认证失败，请重新登陆");
+            return ServerResponse.createByErrorMsg("身份信息认证失败，请重新登录");
         }
 
         return analysisService.getAnalysisRank();

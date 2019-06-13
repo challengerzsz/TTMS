@@ -25,7 +25,7 @@
 		          <input id="icon_telephone" type="password" class="validate  password" name="password">
 		        </div>
 		      </div>
-		     <button class="btn waves-effect waves-light" id="login">登陆</button>
+		     <button class="btn waves-effect waves-light" id="login">登录</button>
 		     <a href="sign.html" id="btn" >去注册</a>
 	      </div>
 	    <!-- </form> -->
@@ -50,15 +50,15 @@
 			          success:function(res){
 			            var personInformation = res;
 			            if(personInformation.status=="1"){
-			            	alert("登陆成功");
+			            	alert("登录成功");
                             localStorage.setItem("type",personInformation.data.type);
 			            	if(personInformation.data.type=="0")       window.location.href="index.html?id="+personInformation.data.id;
 							else if(personInformation.data.type=="1")  window.location.href="ticketing.html";
 							else if(personInformation.data.type=="2")  window.location.href="guanli.html";
 			            } else {
 			                // 你先把这里加一下
-							// 登陆失败在哪儿alert一下
-                            alert("登录失败，请重新登陆")
+							// 登录失败在哪儿alert一下
+                            alert("登录失败，请重新登录")
 							// 但是就是加载这里呀  这是我刚加的  试了一下没用  你先改你的吧
                         }
 			            

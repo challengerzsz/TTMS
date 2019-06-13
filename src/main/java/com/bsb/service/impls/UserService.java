@@ -39,7 +39,7 @@ public class UserService implements IUserService {
 
         user.setPassword(StringUtils.EMPTY);
 
-        return ServerResponse.createBySuccess("登陆成功", user);
+        return ServerResponse.createBySuccess("登录成功", user);
     }
 
     @Override

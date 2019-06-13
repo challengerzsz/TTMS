@@ -8,7 +8,7 @@ create table user_table (
   phone varchar(11) not null,
   address varchar(50) not null,
   create_time timestamp default now(),
-  update_time timestamp default now(),
+  update_time timestamp default now()
 )engine = InnoDB charset = utf8;
 
 create table movies_table(
@@ -96,6 +96,7 @@ delimiter $$
 create trigger init_analysis_trigger after insert
 on user_table for each row begin
 if new.type = 1
+then
 insert into analysis_table values (null, new.id, 0);
 end if;
 end;
